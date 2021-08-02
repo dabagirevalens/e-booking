@@ -1,7 +1,6 @@
 import Room from '../models/room';
 
 //Get all rooms => /api/rooms
-
 const allRooms = async (req, res) => {
     try {
         const rooms = await Room.find();
@@ -30,7 +29,7 @@ const getSingleRoom = async (req, res) => {
         if (!room) {
             return res.status(404).json({
                 success: false,
-                error: `room not found with this id: ${id}`
+                error: `room not found with this ID: ${id}`
             })
         }
 
@@ -75,7 +74,7 @@ const updateRoom = async (req, res) => {
         if (!room) {
             return res.status(404).json({
                 success: false,
-                error: `room not found with this id: ${id}`
+                error: `room not found with this ID: ${id}`
             })
         }
 
@@ -98,9 +97,42 @@ const updateRoom = async (req, res) => {
     }
 }
 
+
+
+//Delete room => /api/rooms/:id
+const deleteRoom = async (req, res) => {
+    try {
+       
+        let id = req.query.id;
+
+        const room = await Room.findById(id);
+
+        if (!room) {
+            return res.status(404).json({
+                success: false,
+                error: `room not found with this ID: ${id}`
+            })
+        }
+
+        room.remove();
+
+        res.status(200).json({
+            success: true,
+            message : 'Room was deleted successfully.'
+        })
+
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            error: error.message
+        })
+    }
+}
+
 export {
     allRooms,
     newRoom,
     getSingleRoom,
-    updateRoom
+    updateRoom,
+    deleteRoom
 }
