@@ -28,7 +28,7 @@ const getSingleRoom = async (req, res, next) => {
         const room = await Room.findById(id);
 
         if (!room) {
-            return next(new ErrorHandler(`room not found with this ID: ${id}`, 404));
+            return next(new ErrorHandler(`Room Not Found With This ID: ${id}`, 404));
         }
 
         res.status(200).json({
@@ -70,7 +70,7 @@ const updateRoom = async (req, res) => {
         let room = await Room.findById(id);
 
         if (!room) {
-            return next(new ErrorHandler(`room not found with this ID: ${id}`, 404));
+            return next(new ErrorHandler(`Room Not Found With This ID: ${id}`, 404));
         }
 
         room = await Room.findByIdAndUpdate(id, req.body, {
@@ -103,7 +103,7 @@ const deleteRoom = async (req, res) => {
         const room = await Room.findById(id);
 
         if (!room) {
-            return next(new ErrorHandler(`room not found with this ID: ${id}`, 404));
+            return next(new ErrorHandler(`Room Not Found With This ID: ${id}`, 404));
         }
 
         room.remove();
