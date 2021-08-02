@@ -1,4 +1,5 @@
 import Room from '../models/room';
+import ErrorHandler from '../utils/errorHandler';
 
 //Get all rooms => /api/rooms
 const allRooms = async (req, res) => {
@@ -19,7 +20,7 @@ const allRooms = async (req, res) => {
 }
 
 //Get room details => /api/rooms/:id
-const getSingleRoom = async (req, res) => {
+const getSingleRoom = async (req, res, next) => {
     try {
 
         let id = req.query.id;
@@ -27,10 +28,7 @@ const getSingleRoom = async (req, res) => {
         const room = await Room.findById(id);
 
         if (!room) {
-            return res.status(404).json({
-                success: false,
-                error: `room not found with this ID: ${id}`
-            })
+            return next(new ErrorHandler(`room not found with this ID: ${id}`, 404));
         }
 
         res.status(200).json({
@@ -66,22 +64,19 @@ const newRoom = async (req, res) => {
 //Update room details => /api/rooms/:id
 const updateRoom = async (req, res) => {
     try {
-       
+
         let id = req.query.id;
 
         let room = await Room.findById(id);
 
         if (!room) {
-            return res.status(404).json({
-                success: false,
-                error: `room not found with this ID: ${id}`
-            })
+            return next(new ErrorHandler(`room not found with this ID: ${id}`, 404));
         }
 
         room = await Room.findByIdAndUpdate(id, req.body, {
-            new : true,
-            runValidators : true,
-            useFindAndModify : false
+            new: true,
+            runValidators: true,
+            useFindAndModify: false
         })
 
         res.status(200).json({
@@ -102,23 +97,20 @@ const updateRoom = async (req, res) => {
 //Delete room => /api/rooms/:id
 const deleteRoom = async (req, res) => {
     try {
-       
+
         let id = req.query.id;
 
         const room = await Room.findById(id);
 
         if (!room) {
-            return res.status(404).json({
-                success: false,
-                error: `room not found with this ID: ${id}`
-            })
+            return next(new ErrorHandler(`room not found with this ID: ${id}`, 404));
         }
 
         room.remove();
 
         res.status(200).json({
             success: true,
-            message : 'Room was deleted successfully.'
+            message: 'Room was deleted successfully.'
         })
 
     } catch (error) {
