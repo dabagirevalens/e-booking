@@ -1,7 +1,11 @@
 module.exports = {
-  reactStrictMode: true,
+  // reactStrictMode: true,
 
-  env :{
-    DB_LOCAL_URL: 'mongodb://localhost:27017/booking'
-  }
-}
+  env: {
+    DB_LOCAL_URL: "mongodb://localhost:27017/booking",
+  },
+
+  images: {
+    domains: ["res.cloudinary.com"],
+  },
+};
