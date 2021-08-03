@@ -4,7 +4,10 @@ import Head from 'next/head';
 import Header from './Header';
 import Footer from './Footer';
 
-const Layout = ({ children, title = "BOOK BEST HOTELS."}) => {
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const Layout = ({ children, title = "E-booking"}) => {
     return (
         <div>
             <Head>
@@ -13,6 +16,7 @@ const Layout = ({ children, title = "BOOK BEST HOTELS."}) => {
                 <meta name='viewport' content='width=device-width, initial-scale=1' />
             </Head>
             <Header />
+            <ToastContainer position="bottom-right" />
             {children}
             <Footer />
         </div>

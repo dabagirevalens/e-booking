@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -7,11 +8,14 @@ const Header = () => {
       <div className="container">
         <div className="col-3 p-0">
           <div className='navbar-brand"'>
+            {/* eslint-disable-next-line @next/next/link-passhref */}
+            <Link href='/'>
             <img
               style={{ cursor: "pointer" }}
               src="/images/bookit_logo.png"
-              alt="BOOKING"
+              alt="e-booking"
             />
+            </Link>
           </div>
         </div>
         <div className="col-3 mt-3 mt-md-0 text-center">
