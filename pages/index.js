@@ -12,8 +12,6 @@ export default function Index() {
   );
 }
 
-
-
 // export const getServerSideProps = wrapper.getServerSideProps(
 //   async ({ store }) => {
 //     await store.dispatch(getRooms(req));
@@ -23,6 +21,8 @@ export default function Index() {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req, res, query, ...etc }) => {
-      await store.dispatch(getRooms(req, query.page));
+      await store.dispatch(
+        getRooms(req, query.page, query.location, query.guests, query.category)
+      );
     }
 );
