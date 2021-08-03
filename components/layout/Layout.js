@@ -4,7 +4,7 @@ import Head from 'next/head';
 import Header from './Header';
 import Footer from './Footer';
 
-const Layout = ({ children, title = "BOOK BEST HOTELS FOR YOUR HOLIDAYS."}) => {
+const Layout = ({ children, title = "BOOK BEST HOTELS."}) => {
     return (
         <div>
             <Head>
