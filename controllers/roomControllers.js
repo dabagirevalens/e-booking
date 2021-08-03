@@ -10,7 +10,7 @@ import ApiFeatures from '../utils/apiFeatures';
 const allRooms = catchAsyncErrors(async (req, res) => {
 
     const resPerPage = 4;
-    const roomsCount = Room.countDocuments;
+    const roomsCount = await Room.countDocuments();
 
     const apiFeatures = new ApiFeatures(Room.find(), req.query)
         .search()
