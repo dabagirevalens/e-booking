@@ -71,9 +71,11 @@ const Login = () => {
               {loading ? <ButtonLoader /> : "LOGIN"}
             </button>
 
-            <a href="#" className="float-right mt-3">
-              New Account?
-            </a>
+            <Link href='/register'>
+              <a href="#" className="float-left my-2">
+                New Account?
+              </a>
+            </Link>
           </form>
         </div>
       </div>
