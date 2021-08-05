@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 
 import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "next-auth/client";
 
 import { loadUser } from "../../redux/actions/userActions";
 
@@ -11,11 +12,14 @@ const Header = () => {
 
   const { user, loading } = useSelector((state) => state.auth);
 
-  console.log(user);
 
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch]);
+
+  const logoutHandler = () => {
+    signOut();
+  };
 
   return (
     <nav className="navbar row justify-content-center sticky-top">
@@ -46,12 +50,31 @@ const Header = () => {
                   <img
                     src={user.avatar && user.avatar.url}
                     alt={user && user.name}
-                    className='rounded-circle'
+                    className="rounded-circle"
                   />
                 </figure>
 
-                 <span> {user && user.name} </span>
+                <span> {user && user.name} </span>
               </a>
+
+              <div
+                className="dropdown-menu"
+                aria-labelledby="dropDownMenuButton"
+              >
+                <Link href="/bookings/me">
+                  <a className="dropdown-item">My Bookings</a>
+                </Link>
+                <Link href="/me/update">
+                  <a className="dropdown-item">Profile</a>
+                </Link>
+                <Link href="/">
+                  <a 
+                  className="dropdown-item text-danger" 
+                  onClick={logoutHandler}>
+                    Logout
+                  </a>
+                </Link>
+              </div>
             </div>
           ) : (
             !loading && (

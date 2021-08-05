@@ -9,6 +9,10 @@ import {
   LOAD_USER_SUCCESS,
   LOAD_USER_FAIL,
 
+  UPDATE_PROFILE_REQUEST,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_FAIL,
+
   CLEAR_ERRORS,
 } from "../constants/userConstants";
 
@@ -44,8 +48,6 @@ export const loadUser = () => async (dispatch) => {
 
     const { data } = await axios.get("/api/me");
 
-    console.log(data.user)
-
     dispatch({
       type: LOAD_USER_SUCCESS,
       payload: data.user
@@ -54,6 +56,34 @@ export const loadUser = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: LOAD_USER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+//Update user profile => /api/me/update
+export const updateProfile = (userData) => async (dispatch) => {
+  try {
+    dispatch({ type: UPDATE_PROFILE_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const { data } = await axios.put("/api/me/update", userData, config);
+
+    console.log(data.success);
+
+    dispatch({
+      type: UPDATE_PROFILE_SUCCESS,
+      payload : data.success
+    })
+
+  } catch (error) {
+    dispatch({
+      type: UPDATE_PROFILE_FAIL,
       payload: error.response.data.message,
     });
   }
