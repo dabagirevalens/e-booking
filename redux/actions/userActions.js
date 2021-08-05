@@ -42,16 +42,18 @@ export const loadUser = () => async (dispatch) => {
     dispatch({ type: LOAD_USER_REQUEST });
 
 
-    const { data } = await axios.post("/api/me");
+    const { data } = await axios.get("/api/me");
+
+    console.log(data.user)
 
     dispatch({
-      type: REGISTER_USER_SUCCESS,
+      type: LOAD_USER_SUCCESS,
       payload: data.user
     })
     
   } catch (error) {
     dispatch({
-      type: REGISTER_USER_FAIL,
+      type: LOAD_USER_FAIL,
       payload: error.response.data.message,
     });
   }
