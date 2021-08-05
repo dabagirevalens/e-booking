@@ -1,8 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 
+import { useDispatch, useSelector } from "react-redux";
+
+import { loadUser } from "../../redux/actions/userActions";
+
 const Header = () => {
+
+  const dispatch = useDispatch();
+
+  const { user, loading } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
+
   return (
     <nav className="navbar row justify-content-center sticky-top">
       <div className="container">

@@ -1,9 +1,7 @@
 import cloudinary from 'cloudinary';
 import User from '../models/user';
 
-import ErrorHandler from '../utils/errorHandler';
 import catchAsyncErrors from '../middlewares/catchAsyncErrors';
-import ApiFeatures from '../utils/apiFeatures';
 
 
 //setting up cloudinary config
@@ -24,6 +22,7 @@ const userRegister = catchAsyncErrors(async (req, res) => {
         crop : 'scale'
     })
 
+    console.log(req.body)
 
     const { name, email, password  } = req.body;
 
@@ -41,6 +40,19 @@ const userRegister = catchAsyncErrors(async (req, res) => {
     res.status(200).json({
         success : true,
         message : 'Account created successfully',
+    });
+
+})
+
+
+// Current user profile => /api/me
+const currentUserProfile = catchAsyncErrors(async (req, res) => {
+
+   
+    const user = await User.findById(req.user._id);
+
+    res.status(200).json({
+        success : true,
         user
     });
 
@@ -50,4 +62,5 @@ const userRegister = catchAsyncErrors(async (req, res) => {
 
 export {
     userRegister,
+    currentUserProfile
 }
