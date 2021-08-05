@@ -6,7 +6,7 @@ import { getRoomDetails } from "../../redux/actions/roomActions";
 
 export default function RoomDetailsPage() {
   return (
-    <Layout>
+    <Layout title='E-booking | Room Details'>
       <RoomDetails />
     </Layout>
   );

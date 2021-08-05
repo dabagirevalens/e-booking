@@ -10,8 +10,9 @@ import { loadUser } from "../../redux/actions/userActions";
 const Header = () => {
   const dispatch = useDispatch();
 
-  const { user, loading } = useSelector((state) => state.auth);
+  const { user, loading } = useSelector((state) => state.loadedUser);
 
+  console.log(user);
 
   useEffect(() => {
     dispatch(loadUser());

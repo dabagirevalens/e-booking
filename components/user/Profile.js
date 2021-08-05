@@ -94,7 +94,7 @@ const Profile = () => {
           <div className="row wrapper">
             <div className="col-10 col-lg-5">
               <form className="shadow-lg" onSubmit={submitHandler}>
-                <h1 className="mb-3">Join Us</h1>
+                <h1 className="mb-3">Update Profile</h1>
 
                 <div className="form-group">
                   <label htmlFor="name_field">Full Name</label>

@@ -1,10 +1,10 @@
-import nc from 'next-connect';
-import dbConnect from '../../config/dbConnect'
+import nc from "next-connect";
+import dbConnect from "../../config/dbConnect";
 
-import { currentUserProfile } from '../../controllers/authControllers'
+import { currentUserProfile } from "../../controllers/authControllers";
 
-import { isAuthenticatedUser } from '../../middlewares/auth'
-import onError from '../../middlewares/errors';
+import { isAuthenticatedUser } from "../../middlewares/auth";
+import onError from "../../middlewares/errors";
 
 const handler = nc({ onError });
 

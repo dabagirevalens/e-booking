@@ -6,6 +6,7 @@ import ErrorHandler from "../utils/errorHandler";
 import sendEmail from "../utils/sendEmail";
 
 import absoluteUrl from "next-absolute-url";
+import crypto from "crypto";
 
 //setting up cloudinary config
 cloudinary.config({
@@ -100,7 +101,7 @@ const forgotPassword = catchAsyncErrors(async (req, res, next) => {
   //Get reset password token
   const resetToken = user.getPasswordResetToken();
 
-  console.log(resetToken);
+  // console.log(resetToken);
 
   await user.save({ validateBeforeSave: false });
 
@@ -120,14 +121,13 @@ const forgotPassword = catchAsyncErrors(async (req, res, next) => {
     await sendEmail({
       email: user.email,
       subject: "E-booking Email Recovery.",
-      text : message,
+      text: message,
     });
 
     res.status(200).json({
       success: true,
       message: `Email has been sent to: ${user.email}`,
     });
-    
   } catch (error) {
     (user.resetPasswordToken = undefined),
       (user.resetPasswordExpire = undefined),
@@ -137,4 +137,57 @@ const forgotPassword = catchAsyncErrors(async (req, res, next) => {
   }
 });
 
-export { userRegister, currentUserProfile, updateProfile, forgotPassword };
+// Reset password => /api/password/reset/:token
+const resetPassword = catchAsyncErrors(async (req, res, next) => {
+  // Hash reset password token
+  const resetPasswordToken = crypto
+    .createHash("sha256")
+    .update(req.query.token)
+    .digest("hex");
+
+  const user = await User.findOne({
+    resetPasswordToken,
+    resetPasswordExpire: {
+      $gt: Date.now(),
+    },
+  });
+
+  if (!user) {
+    return next(
+      new ErrorHandler(
+        "Password reset token is invalid or has been expired",
+        400
+      )
+    );
+  }
+
+  if(req.body.password !== req.body.confirmPassword) {
+    return next(
+      new ErrorHandler(
+        "Password does not match",
+        400
+      )
+    );
+  }
+
+  // Set new password
+  user.password = req.body.password;
+
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpire = undefined;
+
+  await user.save();
+
+  res.status(200).json({
+    success: true,
+    message: 'Password updated successfully'
+  })
+});
+
+export {
+  userRegister,
+  currentUserProfile,
+  updateProfile,
+  forgotPassword,
+  resetPassword,
+};

@@ -2,40 +2,39 @@ import React, { useState, useEffect } from "react";
 
 import { toast } from "react-toastify";
 import ButtonLoader from "../layout/ButtonLoader";
-import Loader from "../layout/Loader";
 
 import { useDispatch, useSelector } from "react-redux";
 import { forgotPassword, clearErrors } from "../../redux/actions/userActions";
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState("");
+    const [email, setEmail] = useState("");
 
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const { error, message, loading } = useSelector(
-    (state) => state.forgotPassword
-  );
+    const { error, message, loading } = useSelector(
+      (state) => state.forgotPassword
+    );
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error);
-      dispatch(clearErrors());
-    }
+    useEffect(() => {
+      if (error) {
+        toast.error(error);
+        dispatch(clearErrors());
+      }
 
-    if (message) {
-      toast.success(message);
-    }
-  }, [error, message, dispatch]);
+      if (message) {
+        toast.success(message);
+      }
+    }, [error, message, dispatch]);
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
+    const submitHandler = async (e) => {
+      e.preventDefault();
 
-    const userData = {
-      email
-    }
+      const userData = {
+        email
+      }
 
-    dispatch(forgotPassword(userData));
-  };
+      dispatch(forgotPassword(userData));
+    };
 
   return (
     <div className="row wrapper">
