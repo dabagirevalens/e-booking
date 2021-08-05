@@ -127,7 +127,7 @@ export const forgotPassword = (email) => async (dispatch) => {
 // Reset password 
 export const resetPassword = (token, passwords) => async (dispatch) => {
   try {
-    dispatch({ type: FORGOT_PASSWORD_REQUEST });
+    dispatch({ type: RESET_PASSWORD_REQUEST });
 
     const config = {
       headers: {
@@ -144,7 +144,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
 
   } catch (error) {
     dispatch({
-      type: FORGOT_PASSWORD_FAIL,
+      type: RESET_PASSWORD_FAIL,
       payload: error.response.data.message
     });
   }

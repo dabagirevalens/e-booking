@@ -311,10 +311,11 @@ nav {
 
 .booking-btn:hover {
   color: white;
+  opacity: .8;
 }
 
 .price-per-night {
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
 .booking-card {
