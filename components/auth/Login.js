@@ -58,9 +58,9 @@ const Login = () => {
               />
             </div>
 
-            <a href="#" className="float-right mb-4">
+            <Link href="/password/forgot" className="float-right mb-4">
               Forgot Password?
-            </a>
+            </Link>
 
             <button
               id="login_button"
@@ -71,7 +71,7 @@ const Login = () => {
               {loading ? <ButtonLoader /> : "LOGIN"}
             </button>
 
-            <Link href='/register'>
+            <Link href="/register">
               <a href="#" className="float-left my-2">
                 New Account?
               </a>

@@ -72,10 +72,8 @@ const Profile = () => {
     if (e.target.name === "avatar") {
       const reader = new FileReader();
 
-      
       reader.onload = () => {
-          if (reader.readyState === 2) {
-            console.log(reader.result)
+        if (reader.readyState === 2) {
           setAvatar(reader.result);
           setAvatarPreview(reader.result);
         }
