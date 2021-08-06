@@ -7,11 +7,13 @@ import {
   BOOKED_DATES_SUCCESS,
   BOOKED_DATES_FAIL,
 
+  MY_BOOKINGS_SUCCESS,
+  MY_BOOKINGS_FAIL,
+
   CLEAR_ERRORS,
 } from "../constants/bookingConstants";
 
 // Check bookings
-
 export const checkBookingReducer = (state = { available: null }, action) => {
     switch (action.type) {
       case CHECK_BOOKING_REQUEST:
@@ -60,6 +62,34 @@ export const checkBookingReducer = (state = { available: null }, action) => {
         };
   
       case BOOKED_DATES_FAIL:
+        return {
+          loading: false,
+          error: action.payload,
+        };
+  
+      case CLEAR_ERRORS:
+        return {
+          ...state,
+          error: null,
+        };
+  
+      default:
+        return state;
+    }
+  };
+
+  // Get all  current user bookings
+
+  export const myBookingsReducer = (state = { myBookings : [] }, action) => {
+    switch (action.type) {
+  
+      case MY_BOOKINGS_SUCCESS:
+        return {
+          loading: false,
+          myBookings: action.payload,
+        };
+  
+      case MY_BOOKINGS_FAIL:
         return {
           loading: false,
           error: action.payload,

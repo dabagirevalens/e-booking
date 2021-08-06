@@ -79,6 +79,19 @@ const checkRoomBookedDates = catchAsyncErrors(async (req, res) => {
 
   });
 
+
+  // Get all bookings for current user => /api/bookings/me
+
+const myBookings = catchAsyncErrors(async (req, res) => {
+
+    const myBookings = await Booking.find({ user: req.user._id});
+
+    res.status(200).json({
+      success: true,
+      myBookings
+    })
+
+  });
   
 // Create new booking
 const newBooking = catchAsyncErrors(async (req, res) => {
@@ -112,5 +125,6 @@ const newBooking = catchAsyncErrors(async (req, res) => {
 export { 
     newBooking ,
     checkRoomBookingAvailability,
-    checkRoomBookedDates
+    checkRoomBookedDates,
+    myBookings
 };
