@@ -22,7 +22,7 @@ export default (err, req, res, next) => {
         error = new Error(message, 400);
     }
 
-    console.log(error);
+    console.log('error', error);
 
     res.status(err.statusCode).json({
         success: false,

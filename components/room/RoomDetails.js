@@ -3,23 +3,23 @@ import Head from "next/head";
 import Image from "next/image";
 
 import { useRouter } from "next/router";
-
 import { Carousel } from "react-bootstrap";
 
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { clearErrors } from "../../redux/actions/roomActions";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import { clearErrors } from "../../redux/actions/roomActions";
 import RoomFeatures from "./RoomFeatures";
 
-import axios  from "axios";
+import { checkBooking, getBookedDates } from "../../redux/actions/bookingActions";
+import { CHECK_BOOKING_RESET } from "../../redux/constants/bookingConstants";
+
+import axios from "axios";
 
 const RoomDetails = () => {
-
-
   const [checkInDate, setCheckInDate] = useState();
   const [checkOutDate, setCheckOutDate] = useState();
 
@@ -29,11 +29,16 @@ const RoomDetails = () => {
   const router = useRouter();
 
   const { room, error } = useSelector((state) => state.roomDetails);
+  const { user } = useSelector((state) => state.loadedUser);
+  const { dates } = useSelector((state) => state.bookedDates);
+  const { available, loading: bookingLoading } = useSelector(
+    (state) => state.checkBooking
+  );
 
-  useEffect(() => {
-    toast.error(error);
-    dispatch(clearErrors());
-  }, [dispatch, error]);
+  const excludedDates = [];
+  dates.forEach((date) => {
+    excludedDates.push(new Date(date));
+  })
 
   const onChange = (dates) => {
     const [checkInDate, checkOutDate] = dates;
@@ -50,40 +55,53 @@ const RoomDetails = () => {
 
       setDaysOfStay(days);
 
+      dispatch(
+        checkBooking(id, checkInDate.toISOString(), checkOutDate.toISOString())
+      );
+
+      console.log(checkInDate.toISOString())
     }
   };
 
-  const newBookingHandler = async () => {
+  const { id } = router.query;
 
+
+  useEffect(() => {
+
+    dispatch(getBookedDates(id))
+
+    toast.error(error);
+    dispatch(clearErrors());
+    
+  }, [dispatch, error, id]);
+
+  const newBookingHandler = async () => {
     const bookingData = {
-      room : room._id,
+      room: router.query.id,
       checkInDate,
       checkOutDate,
       daysOfStay,
-      amountPaid : 90,
-      paymentInfo :{
-        id : 'id',
-        status : 'status'
-      }
-    }
+      amountPaid: 90,
+      paymentInfo: {
+        id: "id",
+        status: "status",
+      },
+    };
 
     try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
-      const config ={
-        headers : {
-          'Content-Type': 'application/json'
-        }
-      }
-
-      const { data } = await axios.post('/api/bookings', bookingData, config)
+      const { data } = await axios.post("/api/bookings", bookingData, config);
 
       console.log(data);
-      
     } catch (error) {
       console.log(error.response);
     }
-
-  }
+  };
 
   return (
     <>
@@ -145,11 +163,38 @@ const RoomDetails = () => {
                 onChange={onChange}
                 startDate={checkInDate}
                 endDate={checkOutDate}
+                minDate={new Date()}
+                excludeDates={excludedDates}
                 selectsRange
                 inline
               />
 
-              <button className="btn btn-block py-3 booking-btn" onClick={newBookingHandler}>Pay</button>
+              {available === true && (
+                <div className="alert alert-success my-3 font-weight-bold">
+                  Room is available. Book now.
+                </div>
+              )}
+
+              {available === false && (
+                <div className="alert alert-danger my-3 font-weight-bold">
+                  Room not available. Try different dates.
+                </div>
+              )}
+
+              {available && !user && (
+                <div className="alert alert-danger my-3 font-weight-bold">
+                  Room not available. Try different dates.
+                </div>
+              )}
+
+              {available && user && (
+                <button
+                  className="btn btn-block py-3 booking-btn"
+                  onClick={newBookingHandler}
+                >
+                  Pay
+                </button>
+              )}
             </div>
           </div>
         </div>

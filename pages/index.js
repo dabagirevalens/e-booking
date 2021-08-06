@@ -17,6 +17,7 @@ export default function Index() {
 //     await store.dispatch(getRooms(req));
 //   }
 // );
+// 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
