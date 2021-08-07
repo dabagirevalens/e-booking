@@ -94,22 +94,19 @@ const MyBookings = () => {
             "logo": "https://public.easyinvoice.cloud/img/logo_en_original.png", 
             "background": "https://public.easyinvoice.cloud/img/watermark-draft.jpg", 
             "sender": {
-                "company": "E-booking",
-                "address": "Kigali Rwanda",
+                "company": "company : E-booking",
+                "address": "address : Kigali Rwanda",
                 "zip": "",
-                "city": "kigali",
-                "country": "Rwanda",
-                "email": "valensdabagire@gmail.com",
-                "phone" : "(250) 781792484"
+                "city": "email : vdabagire@gmail.com",
+                "country": "phone : (250) 781792484",
             },
             "client": {
                    "company": `${booking.user.name}`,
                    "address": `${booking.user.email}`,
                    "zip": "",
-                   "city": "",
-                   "country": "",
-                   "check in date" : `${new Date(booking.checkInDate).toLocaleString('en-US')}`,
-                   "check out date" : `${new Date(booking.checkOutDate).toLocaleString('en-US')}`
+                   "city": `Check in date : ${new Date(booking.checkInDate).toLocaleString('en-US')}`,
+                   "country": `Check out date : ${new Date(booking.checkOutDate).toLocaleString('en-US')}`,
+                   
             },
             "invoiceNumber": `${booking._id}`,
             "invoiceDate":`${new Date(Date.now()).toLocaleString('en-US')}`,

@@ -17,13 +17,15 @@ import RoomFeatures from "./RoomFeatures";
 import { checkBooking, getBookedDates } from "../../redux/actions/bookingActions";
 import { CHECK_BOOKING_RESET } from "../../redux/constants/bookingConstants";
 
+import getStripe from '../../utils/getStripe';
 import axios from "axios";
 
 const RoomDetails = () => {
+
   const [checkInDate, setCheckInDate] = useState();
   const [checkOutDate, setCheckOutDate] = useState();
-
   const [daysOfStay, setDaysOfStay] = useState();
+  const [paymentLoading, setPaymentLoading] = useState(false);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -59,21 +61,10 @@ const RoomDetails = () => {
         checkBooking(id, checkInDate.toISOString(), checkOutDate.toISOString())
       );
 
-      console.log(checkInDate.toISOString())
     }
   };
 
   const { id } = router.query;
-
-
-  useEffect(() => {
-
-    dispatch(getBookedDates(id))
-
-    toast.error(error);
-    dispatch(clearErrors());
-    
-  }, [dispatch, error, id]);
 
   const newBookingHandler = async () => {
     const bookingData = {
@@ -102,6 +93,44 @@ const RoomDetails = () => {
       console.log(error.response);
     }
   };
+
+  const bookRoom = async (id, pricePerNight) => {
+
+      setPaymentLoading(true);
+
+      const amount = pricePerNight * daysOfStay;
+
+      try {
+
+        const link = `/api/checkout_session/${id}?checkInDate=${checkInDate.toISOString()}&checkOutDate=${checkOutDate.toISOString()}&daysOfStay=${daysOfStay}`
+
+        const { data } = await axios.get(link, { params : {amount : amount}})
+        const stripe = await getStripe();
+
+        // Redirect to checkout
+        stripe.redirectToCheckout({ sessionId : data.id });
+        setPaymentLoading(false);
+        
+      } catch (error) {
+          setPaymentLoading(false);
+          console.log('error', error);
+          toast.error(error.message)
+      }
+
+  }
+
+  useEffect(() => {
+
+    dispatch(getBookedDates(id))
+
+    toast.error(error);
+    dispatch(clearErrors());
+
+    return () => {
+      dispatch({ type : CHECK_BOOKING_RESET })
+    }
+    
+  }, [dispatch, error, id]);
 
   return (
     <>
@@ -190,9 +219,10 @@ const RoomDetails = () => {
               {available && user && (
                 <button
                   className="btn btn-block py-3 booking-btn"
-                  onClick={newBookingHandler}
+                  onClick={() => bookRoom(room._id, room.pricePerNight)}
+                  disabled={bookingLoading || paymentLoading ? true : false}
                 >
-                  Pay
+                  Pay - ${daysOfStay * room.pricePerNight}
                 </button>
               )}
             </div>
