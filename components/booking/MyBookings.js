@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import Link from "next/link";
 
-import { myBookings, clearErrors } from "../../redux/actions/bookingActions";
+import { clearErrors } from "../../redux/actions/bookingActions";
 
 const MyBookings = () => {
 
@@ -27,8 +27,8 @@ const MyBookings = () => {
         const data ={
             columns : [
                 {
-                    label : 'Booking ID',
-                    field : 'id',
+                    label : 'Room Name',
+                    field : 'room',
                     sort : 'asc',
                 },
                 {
@@ -57,7 +57,7 @@ const MyBookings = () => {
 
         myBookings && myBookings.forEach(booking => {
             data.rows.push({
-                id : booking._id,
+                room : booking.room.name,
                 checkIn : new Date(booking.checkInDate).toLocaleString('en-US'),
                 checkOut : new Date(booking.checkOutDate).toLocaleString('en-US'),
                 amount :`$${booking.amountPaid}`,
@@ -134,7 +134,7 @@ const MyBookings = () => {
 
             <MDBDataTable
                 data = {setBookings()}
-                className="px-3"  
+                className="px-2"  
                 bordered
                 striped 
                 hover

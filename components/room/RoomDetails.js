@@ -17,6 +17,8 @@ import RoomFeatures from "./RoomFeatures";
 import { checkBooking, getBookedDates } from "../../redux/actions/bookingActions";
 import { CHECK_BOOKING_RESET } from "../../redux/constants/bookingConstants";
 
+import ButtonLoader from "../layout/ButtonLoader"
+
 import getStripe from '../../utils/getStripe';
 import axios from "axios";
 
@@ -222,7 +224,7 @@ const RoomDetails = () => {
                   onClick={() => bookRoom(room._id, room.pricePerNight)}
                   disabled={bookingLoading || paymentLoading ? true : false}
                 >
-                  Pay - ${daysOfStay * room.pricePerNight}
+                 {paymentLoading ? <ButtonLoader />:  `Pay - ${daysOfStay * room.pricePerNight} `}
                 </button>
               )}
             </div>

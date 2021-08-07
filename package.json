@@ -27,6 +27,8 @@
     "next-connect": "^0.10.1",
     "next-redux-wrapper": "^7.0.2",
     "nodemailer": "^6.6.3",
+    "raw-body": "^2.4.1",
+    "rawbody": "^1.0.2",
     "react": "17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-datepicker": "^4.1.1",

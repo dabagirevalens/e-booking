@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { clearErrors } from "../../redux/actions/bookingActions";
 
+
 const BookingDetails = () => {
   const dispatch = useDispatch();
 
