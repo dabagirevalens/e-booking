@@ -148,7 +148,6 @@ body {
   background-color: #e61e4d;
   border-color: #e61e4d;
   margin-top: 2rem;
-  border-radius: 5rem;
 }
 
 .new-room-btn {
@@ -496,4 +495,9 @@ input::placeholder {
 
 #description_404 {
   color: grey;
+}
+
+.notfound:hover {
+  text-decoration: none;
+  color: #e61e4d;
 }

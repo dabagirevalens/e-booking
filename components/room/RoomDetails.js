@@ -22,6 +22,9 @@ import ButtonLoader from "../layout/ButtonLoader"
 import getStripe from '../../utils/getStripe';
 import axios from "axios";
 
+import NewReview from '../review/NewReview'
+import ListReviews from '../review/ListReviews'
+
 const RoomDetails = () => {
 
   const [checkInDate, setCheckInDate] = useState();
@@ -67,34 +70,6 @@ const RoomDetails = () => {
   };
 
   const { id } = router.query;
-
-  const newBookingHandler = async () => {
-    const bookingData = {
-      room: router.query.id,
-      checkInDate,
-      checkOutDate,
-      daysOfStay,
-      amountPaid: 90,
-      paymentInfo: {
-        id: "id",
-        status: "status",
-      },
-    };
-
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
-      const { data } = await axios.post("/api/bookings", bookingData, config);
-
-      console.log(data);
-    } catch (error) {
-      console.log(error.response);
-    }
-  };
 
   const bookRoom = async (id, pricePerNight) => {
 
@@ -231,29 +206,13 @@ const RoomDetails = () => {
           </div>
         </div>
 
-        <div className="reviews w-75">
-          <h3>Reviews:</h3>
-          <hr />
-          <div className="review-card my-3">
-            <div className="rating-outer">
-              <div className="rating-inner"></div>
-            </div>
-            <p className="review_user">by John</p>
-            <p className="review_comment">Good Quality</p>
+        <NewReview />
 
-            <hr />
-          </div>
+        {room.reviews && room.reviews.length > 0 ?
+        <ListReviews reviews={room.reviews} />
+        : <p> <b> No Reviews on this room. </b> </p>
+        }
 
-          <div className="review-card my-3">
-            <div className="rating-outer">
-              <div className="rating-inner"></div>
-            </div>
-            <p className="review_user">by John</p>
-            <p className="review_comment">Good Quality</p>
-
-            <hr />
-          </div>
-        </div>
       </div>
     </>
   );

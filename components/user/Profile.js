@@ -34,26 +34,6 @@ const Profile = () => {
     loading: updateLoading,
   } = useSelector((state) => state.user);
 
-  useEffect(() => {
-    if (loadedUser) {
-      setUser({
-        name: loadedUser.name,
-        email: loadedUser.email,
-      });
-
-      setAvatarPreview(loadedUser.avatar.url);
-    }
-
-    if (error) {
-      toast.error(error);
-      dispatch(clearErrors());
-    }
-
-    if (isUpdated) {
-      router.push("/");
-      dispatch({ type: UPDATE_PROFILE_RESET });
-    }
-  }, [dispatch, router, avatarPreview, isUpdated, loadedUser, error]);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -84,6 +64,27 @@ const Profile = () => {
       setUser({ ...user, [e.target.name]: e.target.value });
     }
   };
+
+  useEffect(() => {
+    if (loadedUser) {
+      setUser({
+        name: loadedUser.name,
+        email: loadedUser.email,
+      });
+
+      setAvatarPreview(loadedUser.avatar.url);
+    }
+
+    if (error) {
+      toast.error(error);
+      dispatch(clearErrors());
+    }
+
+    if (isUpdated) {
+      router.push("/");
+      dispatch({ type: UPDATE_PROFILE_RESET });
+    }
+  }, [dispatch, router, avatarPreview, isUpdated, loadedUser, error]);
 
   return (
     <>
