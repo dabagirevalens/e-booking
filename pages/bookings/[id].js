@@ -1,15 +1,15 @@
-import MyBookings from "../../components/booking/MyBookings";
+import BookingDetails from "../../components/booking/BookingDetails";
 import Layout from "../../components/layout/Layout";
 
-import{ myBookings } from '../../redux/actions/bookingActions'
+import{ getBookingDetails } from '../../redux/actions/bookingActions'
 import { wrapper } from '../../redux/store'
 
 import { getSession }from 'next-auth/client'
 
-const MyBookingsPage = ()  =>{
+const BookingDetailsPage = ()  =>{
   return (
-    <Layout title="E-booking | My Bookings">
-      <MyBookings />
+    <Layout title="E-booking | Booking Details">
+      <BookingDetails />
     </Layout>
   );
 }
@@ -18,7 +18,7 @@ const MyBookingsPage = ()  =>{
 
 export const getServerSideProps = wrapper.getServerSideProps(
     (store) =>
-      async ({ req, res, ...etc }) => {
+      async ({ req, res, params,  ...etc }) => {
     
     const session = await getSession({ req })
     
@@ -31,8 +31,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
         }
     }
     
-    await store.dispatch(myBookings(req.headers.cookie, req))
+    await store.dispatch(getBookingDetails(req.headers.cookie, req, params.id))
     
 })
 
-export default MyBookingsPage
+export default BookingDetailsPage

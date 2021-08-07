@@ -155,7 +155,7 @@ const RoomDetails = () => {
 
               <hr />
 
-              <p className="mt-3 mb- 3">Pick Check In & Check Out Date</p>
+              <p className="mt-3 mb- 3">Pick Check In & Check Out Dates.</p>
 
               <DatePicker
                 className="w-100"

@@ -212,9 +212,14 @@ nav {
   background-color: #e61e4d;
 }
 
+.login-header-btn:hover {
+  opacity: .8;
+}
+
 .login-header-btn a {
   color: white;
 }
+
 
 /* Home page */
 
@@ -226,9 +231,11 @@ nav {
   font-size: 1.1rem;
   color: #e61e4d;
   font-weight: 600;
+  margin-right: 2em;
 }
 
 .back-to-search:hover {
+  text-decoration: none;
   color: #e61e4d;
 }
 
@@ -261,9 +268,6 @@ nav {
   background-color: #e61e4d;
 }
 
-.view-btn a {
-  color: white;
-}
 
 .card-img-top {
   border-radius: 0.8rem;

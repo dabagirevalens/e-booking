@@ -1,130 +1,148 @@
 import Booking from "../models/booking";
 import catchAsyncErrors from "../middlewares/catchAsyncErrors";
 
-import Moment from 'moment';
+import Moment from "moment";
 import { extendMoment } from "moment-range";
 
+const moment = extendMoment(Moment);
 
-const moment = extendMoment(Moment)
+// Create new booking
+const newBooking = catchAsyncErrors(async (req, res) => {
+  const {
+    room,
+    checkInDate,
+    checkOutDate,
+    daysOfStay,
+    amountPaid,
+    paymentInfo,
+  } = req.body;
+
+  const booking = await Booking.create({
+    room,
+    user: req.user._id,
+    checkInDate,
+    checkOutDate,
+    daysOfStay,
+    amountPaid,
+    paymentInfo,
+    paidAt: Date.now(),
+  });
+
+  res.status(200).json({
+    success: true,
+    booking,
+  });
+});
 
 // check room booking availability =>/api/booking/check?query
 
 const checkRoomBookingAvailability = catchAsyncErrors(async (req, res) => {
+  let { roomId, checkInDate, checkOutDate } = req.query;
 
-    let { roomId, checkInDate, checkOutDate } = req.query;
+  checkInDate = new Date(checkInDate);
+  checkOutDate = new Date(checkOutDate);
 
-    checkInDate = new Date(checkInDate)
-    checkOutDate = new Date(checkOutDate)
+  const bookings = await Booking.find({
+    room: roomId,
+    $and: [
+      {
+        checkInDate: {
+          $lte: checkOutDate,
+        },
+      },
+      {
+        checkOutDate: {
+          $gte: checkInDate,
+        },
+      },
+    ],
+  });
 
-    const bookings = await Booking.find({ 
-        room : roomId,
-        $and :[
-            { 
-                checkInDate : {
-                    $lte : checkOutDate
-                }
-            },
-            { 
-                checkOutDate : {
-                    $gte : checkInDate
-                }
-            }
-        ]
-    })
+  //ckeck if there is any booking available
 
-    //ckeck if there is any booking available 
+  let isAvailable;
 
-    let isAvailable;
+  if (bookings && bookings.length === 0) {
+    isAvailable = true;
+  } else {
+    isAvailable = false;
+  }
 
-    if(bookings && bookings.length === 0) {
-        isAvailable = true
-    } else {
-        isAvailable = false
-    }
-
-    res.status(200).json({
-        success: true,
-        isAvailable
-    });
+  res.status(200).json({
+    success: true,
+    isAvailable,
+  });
 });
-
 
 // Check booked dates fro room => /api/bookings/check_booked_dates
 
 const checkRoomBookedDates = catchAsyncErrors(async (req, res) => {
-    const { roomId } = req.query;
+  const { roomId } = req.query;
 
-    const bookings = await Booking.find({ room : roomId})
+  const bookings = await Booking.find({ room: roomId });
 
-    let bookedDates = []
+  let bookedDates = [];
 
-    const timeDifference = moment().utcOffset() / 60;
+  const timeDifference = moment().utcOffset() / 60;
 
-    bookings.forEach((booking =>{
+  bookings.forEach((booking) => {
+    const checkInDate = moment(booking.checkInDate).add(timeDifference);
+    const checkOutDate = moment(booking.checkOutDate).add(timeDifference);
 
-        const checkInDate = moment(booking.checkInDate).add(timeDifference);
-        const checkOutDate = moment(booking.checkOutDate).add(timeDifference);
+    const range = moment.range(moment(checkInDate), moment(checkOutDate));
 
-        const range = moment.range(moment(checkInDate), moment(checkOutDate))
-
-        const dates = Array.from(range.by('day'))
-        bookedDates = bookedDates.concat(dates)
-
-    }))
-  
-    res.status(200).json({
-      success: true,
-      bookedDates,
-    })
-
+    const dates = Array.from(range.by("day"));
+    bookedDates = bookedDates.concat(dates);
   });
 
+  res.status(200).json({
+    success: true,
+    bookedDates,
+  });
+});
 
-  // Get all bookings for current user => /api/bookings/me
+// Get all bookings for current user => /api/bookings/me
 
 const myBookings = catchAsyncErrors(async (req, res) => {
-
-    const myBookings = await Booking.find({ user: req.user._id});
-
-    res.status(200).json({
-      success: true,
-      myBookings
+  const myBookings = await Booking.find({ user: req.user._id })
+    .populate({
+      path: "room",
+      select: "_id name pricePerNight images ",
     })
-
-  });
-  
-// Create new booking
-const newBooking = catchAsyncErrors(async (req, res) => {
-    const {
-      room,
-      checkInDate,
-      checkOutDate,
-      daysOfStay,
-      amountPaid,
-      paymentInfo,
-    } = req.body;
-  
-    const booking = await Booking.create({
-      room,
-      user: req.user._id,
-      checkInDate,
-      checkOutDate,
-      daysOfStay,
-      amountPaid,
-      paymentInfo,
-      paidAt : Date.now(),
+    .populate({
+      path: "user",
+      select: "name email",
     });
-  
-    res.status(200).json({
-      success: true,
-      booking,
-    });
-  });
-  
 
-export { 
-    newBooking ,
-    checkRoomBookingAvailability,
-    checkRoomBookedDates,
-    myBookings
+  res.status(200).json({
+    success: true,
+    myBookings,
+  });
+});
+
+// Get booking details => /api/bookings/:id
+
+const getBookingDetails = catchAsyncErrors(async (req, res) => {
+  const booking = await Booking.findById(req.query.id)
+    .populate({
+      path: "room",
+      select: "_id name pricePerNight images ",
+    })
+    .populate({
+      path: "user",
+      select: "name email",
+    });
+
+  res.status(200).json({
+    success: true,
+    booking,
+  });
+});
+
+export {
+  newBooking,
+  checkRoomBookingAvailability,
+  checkRoomBookedDates,
+  myBookings,
+  getBookingDetails,
 };

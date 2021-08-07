@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
-import { MDBDataTable } from "mdbreact"
+import { MDBDataTable } from "mdbreact";
+import easyinvoice from "easyinvoice";
 
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
@@ -62,13 +63,16 @@ const MyBookings = () => {
                 amount :`$${booking.amountPaid}`,
                 actions :
                 <>
-                    <Link href={`/bokings/${booking._id}`}>
+                    <Link href={`/bookings/${booking._id}`}>
                         <a className="btn btn-primary">
                             <i className="fa fa-eye"></i>
                         </a>
                     </Link>
 
-                    <button className="btn btn-success mx-2">
+                    <button 
+                    className="btn btn-success mx-2"
+                    onClick={() => downloadInvoice(booking)}
+                    >
                         <i className="fa fa-download"></i>
                     </button>
                 </>
@@ -76,6 +80,53 @@ const MyBookings = () => {
         });
 
         return data
+    }
+
+    const downloadInvoice = async (booking) => {
+        var data = {
+            "documentTitle": "E-booking INVOICE",
+            "currency": "USD", 
+            "taxNotation": "vat",
+            "marginTop": 25,
+            "marginRight": 25,
+            "marginLeft": 25,
+            "marginBottom": 25,
+            "logo": "https://public.easyinvoice.cloud/img/logo_en_original.png", 
+            "background": "https://public.easyinvoice.cloud/img/watermark-draft.jpg", 
+            "sender": {
+                "company": "E-booking",
+                "address": "Kigali Rwanda",
+                "zip": "",
+                "city": "kigali",
+                "country": "Rwanda",
+                "email": "valensdabagire@gmail.com",
+                "phone" : "(250) 781792484"
+            },
+            "client": {
+                   "company": `${booking.user.name}`,
+                   "address": `${booking.user.email}`,
+                   "zip": "",
+                   "city": "",
+                   "country": "",
+                   "check in date" : `${new Date(booking.checkInDate).toLocaleString('en-US')}`,
+                   "check out date" : `${new Date(booking.checkOutDate).toLocaleString('en-US')}`
+            },
+            "invoiceNumber": `${booking._id}`,
+            "invoiceDate":`${new Date(Date.now()).toLocaleString('en-US')}`,
+            "products": [
+                {
+                    "quantity": `${booking.daysOfStay}`,
+                    "description": `${booking.room.name}`,
+                    "tax": 0,
+                    "price": booking.room.pricePerNight
+                }
+            ],
+            "bottomNotice": "This is auto generated invoice of your booking on E-booking.",
+        };
+
+        const result = await easyinvoice.createInvoice(data);
+        easyinvoice.download(`invoice_e-booking_${booking._id}.pdf`, result.pdf);
+        
     }
 
     return (

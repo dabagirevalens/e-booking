@@ -20,8 +20,8 @@ const Home = () => {
   page = +page;
 
   let count = roomsCount;
-  if(location) {
-    count = filteredRoomsCount
+  if (location) {
+    count = filteredRoomsCount;
   }
 
   useEffect(() => {
@@ -36,15 +36,17 @@ const Home = () => {
   return (
     <>
       <section id="rooms" className="container mt-5">
-        <h2 className="mb-3 ml-2 stays-heading">
-          {location ? `Rooms in ${location}` : `@find where to stay.`}
-        </h2>
+        <div className="d-flex justify-content-between align-items-center">
+          <h2 className="mb-3 ml-2 stays-heading">
+            {location ? `Rooms in ${location}` : `@find where to stay.`}
+          </h2>
 
-        <Link href="/search">
-          <a className="ml-2 back-to-search">
-            <i className="fa fa-arrow-left"></i> Back to Search
-          </a>
-        </Link>
+          <Link href="/search">
+            <a className="back-to-search">
+              <i className="fa fa-search"></i> Search .....
+            </a>
+          </Link>
+        </div>
         <div className="row">
           {rooms && rooms.length === 0 ? (
             <div className="alert alert-danger mt-5 w-100 ">
