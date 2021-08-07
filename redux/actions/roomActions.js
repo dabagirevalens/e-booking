@@ -4,17 +4,26 @@ import absoluteUrl from "next-absolute-url";
 import {
   ALL_ROOMS_SUCCESS,
   ALL_ROOMS_FAIL,
+
   ROOM_DETAILS_SUCCESS,
   ROOM_DETAILS_FAIL,
+
   NEW_REVIEW_REQUEST,
   NEW_REVIEW_SUCCESS,
   NEW_REVIEW_FAIL,
+
   REVIEW_AVAILABILITY_REQUEST,
   REVIEW_AVAILABILITY_SUCCESS,
   REVIEW_AVAILABILITY_FAIL,
+
   ADMIN_ROOMS_REQUEST,
   ADMIN_ROOMS_SUCCESS,
   ADMIN_ROOMS_FAIL,
+
+  NEW_REOOM_REQUEST ,
+  NEW_REOOM_SUCCESS ,
+  NEW_REOOM_FAIL,
+
   CLEAR_ERRORS,
 } from "../constants/roomConstants";
 
@@ -65,32 +74,6 @@ export const getRoomDetails = (req, id) => async (dispatch) => {
   }
 };
 
-//Get all rooms - ADMIN
-
-export const getAdminRooms = () => async (dispatch) => {
-  try {
-
-    dispatch({ type : ADMIN_ROOMS_REQUEST });
-
-    const { data } = await axios.get(`/api/admin/rooms/`);
-
-    console.log(data);
-
-    dispatch({
-      type: ADMIN_ROOMS_SUCCESS,
-      payload: data.rooms,
-    })
-
-  } catch (error) {
-
-    console.log(error);
-
-    dispatch({
-      type: ADMIN_ROOMS_FAIL,
-      payload: error.response.data.message,
-    });
-  }
-};
 
 // new review => /api/reviews
 
@@ -104,12 +87,11 @@ export const newReview = (reviewData) => async (dispatch) => {
 
     const { data } = await axios.put(`/api/reviews`, reviewData, config);
 
-    console.log(data);
-
     dispatch({
       type: NEW_REVIEW_SUCCESS,
       payload: data.success,
-    });
+    })
+
   } catch (error) {
     dispatch({
       type: NEW_REVIEW_FAIL,
@@ -135,6 +117,58 @@ export const checkReviewAvailability = (roomId) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: REVIEW_AVAILABILITY_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+
+//Get all rooms - ADMIN
+
+export const getAdminRooms = () => async (dispatch) => {
+  try {
+
+    dispatch({ type : ADMIN_ROOMS_REQUEST });
+
+    const { data } = await axios.get(`/api/admin/rooms/`);
+
+
+    dispatch({
+      type: ADMIN_ROOMS_SUCCESS,
+      payload: data.rooms,
+    })
+
+  } catch (error) {
+
+    dispatch({
+      type: ADMIN_ROOMS_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
+
+//Get all rooms - ADMIN
+
+export const newRoom = (roomData) => async (dispatch) => {
+  try {
+    dispatch({ type: NEW_ROOM_REQUEST });
+
+    const config = {
+      headers: { "Content-Type": "Application/json" },
+    };
+
+    const { data } = await axios.put(`/api/rooms`, roomData, config);
+
+    dispatch({
+      type: NEW_ROOM_SUCCESS,
+      payload: data,
+    })
+
+
+  } catch (error) {
+    dispatch({
+      type: NEW_ROOM_FAIL,
       payload: error.response.data.message,
     });
   }

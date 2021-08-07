@@ -6,6 +6,15 @@ import ErrorHandler from '../utils/errorHandler';
 import catchAsyncErrors from '../middlewares/catchAsyncErrors';
 
 import ApiFeatures from '../utils/apiFeatures';
+import cloudinary from "cloudinary";
+
+//setting up cloudinary config
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
 
 //Get all rooms => /api/rooms
 const allRooms = catchAsyncErrors(async (req, res) => {
@@ -55,6 +64,29 @@ const getSingleRoom = catchAsyncErrors(async (req, res, next) => {
 
 //Create new room => /api/rooms
 const newRoom = catchAsyncErrors(async (req, res) => {
+    
+
+    const images = req.body.images;
+
+    let imagesLinks = [];
+
+    for (let i = 0; i < images.length; i++) {
+        
+        const result = await cloudinary.v2.uploader.upload(images[i], {
+            folder: "e-booking/rooms",
+            width: "150",
+            crop: "scale",
+        })
+
+        imagesLinks.push({
+            public_id: result.public_id,
+            url: result.secure_url,
+        })
+
+    }
+
+    req.body.images = imagesLinks;
+    req.body.user = req.user._id;
 
     const room = await Room.create(req.body);
 

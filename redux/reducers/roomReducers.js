@@ -18,6 +18,11 @@ import {
   ADMIN_ROOMS_SUCCESS ,
   ADMIN_ROOMS_FAIL,
 
+  NEW_REOOM_REQUEST ,
+  NEW_REOOM_SUCCESS ,
+  NEW_REOOM_RESET,
+  NEW_REOOM_FAIL,
+
   CLEAR_ERRORS,
 } from "../constants/roomConstants";
 
@@ -140,6 +145,46 @@ export const checkReviewReducer = (state = { isReviewAvailable : null}, action) 
         ...state,
         error: null,
       };
+    default:
+      return state;
+  }
+};
+
+
+//New room review
+
+export const newRoomReducer = (state = { room : {} }, action) => {
+  switch (action.type) {
+
+    case NEW_REOOM_REQUEST:
+      return {
+        loading: true,
+      }
+    
+    case NEW_REOOM_SUCCESS:
+      return {
+        loading: false,
+        success: action.payload.success,
+        room: action.payload.room,
+      }
+    
+    case NEW_REOOM_RESET:
+      return {
+        success: false,
+      }
+    
+    case NEW_REOOM_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
+    
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      }
+    
     default:
       return state;
   }
