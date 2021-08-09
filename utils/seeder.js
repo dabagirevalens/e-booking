@@ -4,7 +4,7 @@ const Room  = require ('../models/room');
 
 const rooms = require( '../data/rooms.json');
 
-mongoose.connect(`mongodb://localhost:27017/booking`, {
+mongoose.connect(`mongodb+srv://vdabagire:husky@dv@e-booking.x9of9.mongodb.net/e-booking?retryWrites=true&w=majority`, {
     useCreateIndex: true,
     useFindAndModify: false,
     useNewUrlParser: true,

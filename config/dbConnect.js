@@ -5,7 +5,7 @@ const dbConnect = () => {
         return;
     }
 
-    mongoose.connect(process.env.DB_LOCAL_URL, {
+    mongoose.connect(process.env.DB_URI, {
         useCreateIndex: true,
         useFindAndModify: false,
         useNewUrlParser: true,
