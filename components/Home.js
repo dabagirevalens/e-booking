@@ -36,13 +36,13 @@ const Home = () => {
   return (
     <>
       <section id="rooms" className="container mt-5">
-        <div className="d-flex justify-content-between align-items-center">
+        <div className="d-flex justify-content-between align-items-center flex-wrap">
           <h2 className="mb-3 ml-2 stays-heading">
             {location ? `Rooms in ${location}` : `@find where to stay.`}
           </h2>
 
           <Link href="/search">
-            <a className="back-to-search">
+            <a className="back-to-search ml-3">
               <i className="fa fa-search"></i> Search .....
             </a>
           </Link>

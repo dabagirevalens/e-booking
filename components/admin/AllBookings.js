@@ -7,26 +7,55 @@ import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import Link from "next/link";
 
-import { clearErrors } from "../../redux/actions/bookingActions";
+import { useRouter } from "next/router";
 
-const MyBookings = () => {
+import Loader from "../layout/Loader";
+
+import {
+  getAdminBookings,
+  deleteBooking,
+  clearErrors,
+} from "../../redux/actions/bookingActions";
+import { DELETE_BOOKING_RESET } from "../../redux/constants/bookingConstants";
+
+const AllBookings = () => {
+  //
+
   const dispatch = useDispatch();
+  const router = useRouter();
 
-  const { myBookings, error } = useSelector((state) => state.myBookings);
+  const { myBookings, error, loading } = useSelector(
+    (state) => state.myBookings
+  );
+  const { isDeleted, error: deleteError } = useSelector(
+    (state) => state.booking
+  );
 
   useEffect(() => {
+    dispatch(getAdminBookings());
+
     if (error) {
       toast.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, error]);
+
+    if (deleteError) {
+      toast.error(deleteError);
+      dispatch(clearErrors());
+    }
+
+    if (isDeleted) {
+      router.push("/admin/bookings");
+      dispatch({ type: DELETE_BOOKING_RESET });
+    }
+  }, [dispatch, error, isDeleted, deleteError, router]);
 
   const setBookings = () => {
     const data = {
       columns: [
         {
-          label: "Room Name",
-          field: "room",
+          label: "Booking Id",
+          field: "id",
           sort: "asc",
         },
         {
@@ -56,13 +85,13 @@ const MyBookings = () => {
     myBookings &&
       myBookings.forEach((booking) => {
         data.rows.push({
-          room: booking.room.name,
+          id: booking._id,
           checkIn: new Date(booking.checkInDate).toLocaleString("en-US"),
           checkOut: new Date(booking.checkOutDate).toLocaleString("en-US"),
           amount: `$${booking.amountPaid}`,
           actions: (
             <>
-              <Link href={`/bookings/${booking._id}`}>
+              <Link href={`/admin/bookings/${booking._id}`}>
                 <a className="btn btn-primary">
                   <i className="fa fa-eye"></i>
                 </a>
@@ -74,6 +103,13 @@ const MyBookings = () => {
               >
                 <i className="fa fa-download"></i>
               </button>
+
+              <button
+                className="btn btn-danger mx-2"
+                onClick={() => deleteBookingHandler(booking._id)}
+              >
+                <i className="fa fa-trash"></i>
+              </button>
             </>
           ),
         });
@@ -84,7 +120,7 @@ const MyBookings = () => {
 
   const downloadInvoice = async (booking) => {
     var data = {
-      documentTitle: "E-booking INVOICE",
+      documentTitle: "E-booking Booking",
       currency: "USD",
       taxNotation: "vat",
       marginTop: 25,
@@ -130,27 +166,37 @@ const MyBookings = () => {
     easyinvoice.download(`invoice_e-booking_${booking._id}.pdf`, result.pdf);
   };
 
+  const deleteBookingHandler = (id) => {
+    dispatch(deleteBooking(id));
+  };
+
   return (
     <div className="container container-fluid">
-      <h1 className="my-5">You have {myBookings.length} Bookings.</h1>
-
-      {myBookings.length === 0 && 
-          <div className="">
-            <p><Link href='/'><a className="back_to_book">Go back</a></Link> to book one.</p>
-          </div>
-      }
-
-      {myBookings && myBookings.length> 0 && 
-          <MDBDataTable
-          data={setBookings()}
-          className="px-2"
-          bordered
-          striped
-          hover
-        />
-      }
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          {myBookings && myBookings.length === 0 ? 
+          <div className="alert alert-danger mt-5">No Bookings.</div>  
+          : <h1 className="my-5">
+          {`${myBookings && myBookings.length} Booking${
+            myBookings.length === 1 ? "" : "s"}`}
+        </h1>
+        }
+          
+          {myBookings && myBookings.length > 0 && (
+            <MDBDataTable
+              data={setBookings()}
+              className="px-2"
+              bordered
+              striped
+              hover
+            />
+          )}
+        </>
+      )}
     </div>
   );
 };
 
-export default MyBookings;
+export default AllBookings;

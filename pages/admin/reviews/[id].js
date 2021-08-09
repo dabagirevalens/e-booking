@@ -2,20 +2,20 @@ import React from 'react';
 import { getSession } from 'next-auth/client'
 
 
-import AllRooms from "../../../components/admin/AllRooms";
+import RoomReviews from "../../../components/admin/RoomReviews";
 import Layout from "../../../components/layout/Layout";
 
 
-export default function AllRoomsPage() {
+export default function RoomReviewsPage() {
   return (
-    <Layout title="E-booking | All Rooms">
-      <AllRooms />
+    <Layout title="E-booking | Room Reviews">
+      <RoomReviews />
     </Layout>
   );
 }
 
 
-//redirect user to login page if not logged in
+//redirect user to login page if unauthorized
 
 
 export async function getServerSideProps(context) {

@@ -199,7 +199,7 @@ const RoomDetails = () => {
                   onClick={() => bookRoom(room._id, room.pricePerNight)}
                   disabled={bookingLoading || paymentLoading ? true : false}
                 >
-                 {paymentLoading ? <ButtonLoader />:  `Pay - ${daysOfStay * room.pricePerNight} `}
+                 {paymentLoading ? <ButtonLoader />:  `Pay - $${daysOfStay * room.pricePerNight} `}
                 </button>
               )}
             </div>

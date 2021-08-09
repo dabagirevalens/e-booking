@@ -8,11 +8,11 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { clearErrors } from "../../redux/actions/bookingActions";
 
-
 const BookingDetails = () => {
   const dispatch = useDispatch();
 
   const { booking, error } = useSelector((state) => state.bookingDetails);
+  const { user } = useSelector((state) => state.loadedUser);
 
   useEffect(() => {
     if (error) {
@@ -21,11 +21,14 @@ const BookingDetails = () => {
     }
   }, [dispatch, error]);
 
+  const isPaid =
+    booking.paymentInfo && booking.paymentInfo.status === "paid" ? true : false;
+
   return (
     <div className="container container-fluid">
       <div classNameN="row d-flex justify-content-between">
         <div className="col-12 col-lg-8 mt-5 booking-details">
-          {booking && booking.room && booking.user &&(
+          {booking && booking.room && booking.user && (
             <>
               <h2 className="my-5">Booking # {booking._id} </h2>
 
@@ -58,9 +61,18 @@ const BookingDetails = () => {
               <hr />
 
               <h4 className="my-4">Payment Status</h4>
-              <p className="greenColor">
-                <b>Paid</b>
+              <p className={isPaid ? "greenColor" : "redColor"}>
+                <b>{isPaid ? "Paid" : "Not Paid"}</b>
               </p>
+
+              {user && user.role === "admin" && (
+                <>
+                  <h4 className="my-4">Stripe Payment ID</h4>
+                  <p className='redColor'>
+                    <b>{booking.paymentInfo.id}</b>
+                  </p>
+                </>
+              )}
 
               <h4 className="mt-5 mb-4">Booked Room:</h4>
 

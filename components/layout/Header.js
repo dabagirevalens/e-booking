@@ -22,7 +22,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="navbar row justify-content-center sticky-top">
+    <nav className="navbar row d-flex justify-content-between sticky-top">
       <div className="container">
         <div className="col-3 p-0">
           <div className='navbar-brand"'>
@@ -30,7 +30,7 @@ const Header = () => {
             <Link href="/">
               <img
                 style={{ cursor: "pointer" }}
-                src="/images/bookit_logo.png"
+                src="/images/e-booking_logo.png"
                 alt="e-booking"
               />
             </Link>
@@ -68,6 +68,13 @@ const Header = () => {
                       <a className="dropdown-item">Rooms</a>
                    </Link>
 
+                   <Link href="/admin/bookings">
+                      <a className="dropdown-item">Bookings</a>
+                   </Link>
+
+                   <Link href="/admin/users">
+                      <a className="dropdown-item">Users</a>
+                   </Link>
                    <hr />
                  </>
                 }

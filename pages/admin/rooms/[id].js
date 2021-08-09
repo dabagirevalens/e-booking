@@ -2,14 +2,14 @@ import React from 'react';
 import { getSession } from 'next-auth/client'
 
 
-import AllRooms from "../../../components/admin/AllRooms";
+import UpdateRoom from "../../../components/admin/UpdateRoom";
 import Layout from "../../../components/layout/Layout";
 
 
-export default function AllRoomsPage() {
+export default function UpdateRoomPage() {
   return (
-    <Layout title="E-booking | All Rooms">
-      <AllRooms />
+    <Layout title="E-booking | Update Room">
+      <UpdateRoom />
     </Layout>
   );
 }
@@ -22,7 +22,7 @@ export async function getServerSideProps(context) {
 
     const session = await getSession({ req: context.req })
 
-    if(!session || session.user.role !== "admin") {
+    if(!session || session.user.role !== "admin" ) {
         return {
             redirect: {
                 destination: '/login',

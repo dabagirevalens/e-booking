@@ -11,6 +11,9 @@ const handler = nc({ onError });
 
 dbConnect();
 
-handler.use(isAuthenticatedUser).put(createRoomReview)
+handler
+    .use(isAuthenticatedUser)
+    .put(createRoomReview)
+
 
 export default handler;

@@ -2,14 +2,14 @@ import React from 'react';
 import { getSession } from 'next-auth/client'
 
 
-import AllRooms from "../../../components/admin/AllRooms";
+import AllBookings from "../../../components/admin/AllBookings";
 import Layout from "../../../components/layout/Layout";
 
 
-export default function AllRoomsPage() {
+export default function AllBookingsPage() {
   return (
-    <Layout title="E-booking | All Rooms">
-      <AllRooms />
+    <Layout title="E-booking | All Bookings">
+      <AllBookings />
     </Layout>
   );
 }

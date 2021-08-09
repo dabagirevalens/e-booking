@@ -154,7 +154,6 @@ const NewReview = () => {
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
               >
-                {" "}
               </textarea>
 
               <button
