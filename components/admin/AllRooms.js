@@ -6,6 +6,7 @@ import Loader from "../layout/Loader";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import {
   getAdminRooms,
@@ -19,6 +20,7 @@ const AllRooms = () => {
   //
 
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const { loading, error, rooms } = useSelector((state) => state.allRooms);
   const { error: deleteError, isDeleted } = useSelector((state) => state.room);
@@ -40,7 +42,7 @@ const AllRooms = () => {
       router.push("/admin/rooms");
       dispatch({ type: DELETE_ROOM_REQUEST });
     }
-  }, [dispatch, error, deleteError, isDeleted]);
+  }, [dispatch, error, deleteError, isDeleted, router]);
 
   const setRooms = () => {
     const data = {

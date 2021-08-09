@@ -93,7 +93,7 @@ const MyBookings = () => {
       marginBottom: 25,
       logo: "https://res.cloudinary.com/e-booking/image/upload/v1628400008/e-booking_logo_vwwioa.png",
       background:
-        "https://res.cloudinary.com/e-booking/image/upload/v1628400008/e-booking_logo_vwwioa.png",
+        "https://public.easyinvoice.cloud/img/watermark-draft.jpg",
       sender: {
         company: "company : E-booking",
         address: "address : Kigali Rwanda",
@@ -132,8 +132,14 @@ const MyBookings = () => {
 
   return (
     <div className="container container-fluid">
-      <h1 className="my-5">You have {myBookings.length} Bookings.</h1>
 
+        {myBookings && myBookings.length === 0 ? 
+          <div className="alert alert-danger mt-5">No Bookings.</div>  
+          : <h1 className="my-5">
+          {`${myBookings && myBookings.length} Booking${
+            myBookings.length === 1 ? "" : "s"}`}
+        </h1>
+        }
       {myBookings.length === 0 && 
           <div className="">
             <p><Link href='/'><a className="back_to_book">Go back</a></Link> to book one.</p>

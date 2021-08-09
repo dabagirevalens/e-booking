@@ -129,7 +129,7 @@ const AllBookings = () => {
       marginBottom: 25,
       logo: "https://res.cloudinary.com/e-booking/image/upload/v1628400008/e-booking_logo_vwwioa.png",
       background:
-        "https://res.cloudinary.com/e-booking/image/upload/v1628400008/e-booking_logo_vwwioa.png",
+        "https://public.easyinvoice.cloud/img/watermark-draft.jpg",
       sender: {
         company: "company : E-booking",
         address: "address : Kigali Rwanda",

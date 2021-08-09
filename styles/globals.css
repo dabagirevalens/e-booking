@@ -219,6 +219,15 @@ nav {
   color: white;
 }
 
+@media screen and (max-width: 900px) {
+  .nanbar_menu {
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+    color : white;
+  }
+}
+
 
 /* Home page */
 

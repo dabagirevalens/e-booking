@@ -22,7 +22,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="navbar row d-flex justify-content-between sticky-top">
+    <nav className="navbar row d-flex justify-content-center sticky-top">
       <div className="container">
         <div className="col-3 p-0">
           <div className='navbar-brand"'>
@@ -38,7 +38,7 @@ const Header = () => {
         </div>
         <div className="col-3 mt-3 mt-md-0 text-center">
           {user ? (
-            <div className="ml-4 dropdown d-line">
+            <div className="ml-4 dropdown d-flex">
               <a
                 className="btn dropdown-toggle mr-4"
                 id="dropDownMenuButton"

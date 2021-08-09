@@ -51,7 +51,7 @@ const webhookCheckout = catchAsyncErrors(async (req, res) => {
 
     const rawBody = await getRawBody(req);
 
-    console.log(rawBody)
+    console.log(`rawBody ${rawBody}`)
 
     try {
         

@@ -36,6 +36,7 @@ const NewReview = () => {
 
     if (success) {
       toast.success("Review is posted.");
+      router.push(`/room/${id}`)
       dispatch({ type: NEW_REVIEW_RESET });
     }
   }, [dispatch, router, success, error, id]);
@@ -161,7 +162,6 @@ const NewReview = () => {
                 data-dismiss="modal"
                 aria-label="Close"
                 onClick={submitHandler}
-                disabled={comment === ""}
               >
                 Submit
               </button>

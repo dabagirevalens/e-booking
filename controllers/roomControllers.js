@@ -203,6 +203,9 @@ const createRoomReview = catchAsyncErrors(async (req, res) => {
 
         roomReviews.forEach(review => {
             if(review.user.toString() === req.user._id.toString()) {
+                if(comment === "") {
+                    review.comment = review.comment
+                }
                 review.comment = comment;
                 review.rating = rating
             }
