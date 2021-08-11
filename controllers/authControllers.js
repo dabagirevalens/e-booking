@@ -133,6 +133,7 @@ const forgotPassword = catchAsyncErrors(async (req, res, next) => {
       success: true,
       message: `Email has been sent to: ${user.email}`,
     });
+    
   } catch (error) {
     
     (user.resetPasswordToken = undefined),

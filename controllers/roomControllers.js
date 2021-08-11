@@ -233,7 +233,7 @@ const checkReviewAvailability = catchAsyncErrors(async (req, res) => {
 
     const bookings = await Booking.find({ user : req.user._id, room : roomId });
 
-    console.log(bookings)
+    // console.log(bookings)
 
     let isReviewAvailable = false;
 

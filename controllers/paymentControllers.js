@@ -51,7 +51,7 @@ const webhookCheckout = catchAsyncErrors(async (req, res) => {
 
     const rawBody = await getRawBody(req);
 
-    console.log(`rawBody ${rawBody}`)
+    // console.log(`rawBody ${rawBody}`)
 
     try {
         
@@ -59,7 +59,7 @@ const webhookCheckout = catchAsyncErrors(async (req, res) => {
 
         const event = stripe.webhooks.constructEvent(rawBody, signature, process.env.STRIPE_WEBHOOK_SECRET)
 
-        console.log(event)
+        // console.log(event)
 
         if(event.type === 'checkout.session.completed') {
 
@@ -90,7 +90,7 @@ const webhookCheckout = catchAsyncErrors(async (req, res) => {
                 paidAt: Date.now(),
             });
 
-            console.log(booking);
+            // console.log(booking);
 
             res.status(200).json({ success : true })
 

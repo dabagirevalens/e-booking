@@ -207,6 +207,8 @@ nav {
   box-shadow: 0 4px 6px -6px #222;
 }
 
+
+
 .login-header-btn {
   background-color: #e61e4d;
 }
@@ -218,16 +220,6 @@ nav {
 .login-header-btn a {
   color: white;
 }
-
-@media screen and (max-width: 900px) {
-  .nanbar_menu {
-    display : flex;
-    justify-content: space-between;
-    align-items: center;
-    color : white;
-  }
-}
-
 
 /* Home page */
 

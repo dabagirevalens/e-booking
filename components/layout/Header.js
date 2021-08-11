@@ -22,7 +22,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="navbar row d-flex justify-content-center sticky-top">
+    <nav className="navbar row d-flex justify-content-between align-items-center flex-wrap sticky-top">
       <div className="container">
         <div className="col-3 p-0">
           <div className='navbar-brand"'>
@@ -38,9 +38,9 @@ const Header = () => {
         </div>
         <div className="col-3 mt-3 mt-md-0 text-center">
           {user ? (
-            <div className="ml-4 dropdown d-flex">
+            <div className="ml-4 dropdown d-flex float-right">
               <a
-                className="btn dropdown-toggle mr-4"
+                className="btn dropdown-toggle"
                 id="dropDownMenuButton"
                 data-toggle="dropdown"
                 aria-haspopup="true"
@@ -58,7 +58,7 @@ const Header = () => {
               </a>
 
               <div
-                className="dropdown-menu"
+                className="dropdown-menu position-absolute w-100"
                 aria-labelledby="dropDownMenuButton"
               >
 
