@@ -4,12 +4,12 @@ module.exports = {
   env: {
     DB_LOCAL_URL: "mongodb://localhost:27017/booking",
 
-    DB_URI : 'mongodb+srv://vdabagire:husky@dv@e-booking.x9of9.mongodb.net/e-booking?retryWrites=true&w=majority',
+    DB_URI : 'mongodb+srv://valensdabagire:@dv19092003ds@@e-booking.x9of9.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
 
     STRIPE_API_KEY:
-      "pk_test_51JLkf4F2Ig7LH22dOF8HQLaflUYgBvmYG4DgvdhsEMMhBwtBYfpFcvCr2XpzZNUCLZMlvc6IlTMgbgKUwO4xVXus00h6S1OVmJ",
+      "pk_test_51JLkZPJzX7JU3N9eMXeecvmaiyNgwR3xgNBF3qos2iyTwMDBsrLqaSxXuAg5Ox29tc4D6XFFrFK3wmt6kWxDTxcn00bInd1y7A",
     STRIPE_SECRET_KEY:
-      "sk_test_51JLkf4F2Ig7LH22dBTiOg44ELu8CzwnFVt0Pv1kFtM8mEMt010Tyk7PxQNcorFfsgL9f1ZjPi6qjnKDBP1enLDmm00GuoGMxg7",
+      "sk_test_51JLkZPJzX7JU3N9e9pMXS2r3l8TGdT1DrHtHBV4O8zCczNFDddiPIc52pkT3Sw4fiUUJdzNN0ALXjb0eovg8N5WX00BZUr9MrM",
     STRIPE_WEBHOOK_SECRET: "whsec_g9kbraUUp6NZcCj3eJsIaBFMkAfbOaIg",
 
     CLOUDINARY_CLOUD_NAME: "e-booking",

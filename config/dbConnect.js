@@ -7,9 +7,9 @@ const dbConnect = () => {
 
     mongoose.connect(process.env.DB_URI, {
         useCreateIndex: true,
-        useFindAndModify: false,
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useFindAndModify: false,
     })
 }
 

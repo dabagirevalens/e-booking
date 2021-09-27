@@ -9,6 +9,15 @@ const handler = nc({ onError });
 
 dbConnect();
 
+export const config = {
+    api: {
+      bodyParser: {
+        sizeLimit: '5mb',
+      },
+    },
+  }
+  
+
 handler.post(userRegister);
 
 export default handler;
