@@ -189,7 +189,7 @@ const RoomDetails = () => {
 
               {available && !user && (
                 <div className="alert alert-danger my-3 font-weight-bold">
-                  Room not available. Try different dates.
+                  Please login first to book this room.
                 </div>
               )}
 

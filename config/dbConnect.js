@@ -1,16 +1,20 @@
 import mongoose from 'mongoose';
 
-const dbConnect = () => {
+const dbConnect = async () => {
     if (mongoose.connection.readyState >= 1) {
         return;
     }
 
-    mongoose.connect(process.env.DB_URI, {
-        useCreateIndex: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useFindAndModify: false,
-    })
-}
+    try {
+        mongoose.connect(process.env.DB_URI, {
+            useCreateIndex: true,
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: false,
+        })
 
+    } catch (error) {
+        console.log(error)
+    }
+}
 export default dbConnect;

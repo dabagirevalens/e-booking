@@ -10,6 +10,14 @@ const handler = nc({ onError });
 
 dbConnect();
 
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '10mb',
+        },
+    },
+}
+
 handler.get(allRooms);
 handler.use(isAuthenticatedUser, authorizeRoles('admin')).post(newRoom)
 

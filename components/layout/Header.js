@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { signOut } from "next-auth/client";
 
 import { loadUser } from "../../redux/actions/userActions";
@@ -95,13 +95,11 @@ const Header = () => {
               </div>
             </div>
           ) : (
-            !loading && (
               <Link href="/login">
                 <a className="btn px-4 text-white login-header-btn float-right">
                   Login
                 </a>
               </Link>
-            )
           )}
         </div>
       </div>
