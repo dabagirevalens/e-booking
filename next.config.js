@@ -29,4 +29,7 @@ module.exports = {
   images: {
     domains: ["res.cloudinary.com"],
   },
+  generateBuildId: async () => {
+    return 'my-build-id'
+  },
 };
