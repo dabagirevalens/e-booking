@@ -116,26 +116,25 @@ const forgotPassword = catchAsyncErrors(async (req, res, next) => {
   //Create password reset url
   const resetUrl = `${origin}/password/reset/${resetToken}`;
 
-  const message = `
-  Your password reset url is as follow : \n\n\n 
-  ${resetUrl} \n\n\n
-  If you have not requested this email, then ignore it.
-  `;
+  const message = `<h1>Your password reset token is as follow: </h1> \n\n<p>${resetUrl}</p>\n\n
+    <h2>If you din't requested, Please ignore it.</h2>`
 
   try {
+
     await sendEmail({
-      email: user.email,
+      from: process.env.EMAIL_USER,
+      to: user.email,
       subject: "E-booking Email Recovery.",
-      text: message,
-    });
+      text: message
+    })
 
     res.status(200).json({
       success: true,
       message: `Email has been sent to: ${user.email}`,
     });
-    
+
   } catch (error) {
-    
+
     (user.resetPasswordToken = undefined),
       (user.resetPasswordExpire = undefined),
       await user.save({ validateBeforeSave: fasle });

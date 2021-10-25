@@ -121,8 +121,8 @@
       "roomCleaning": true,
       "images": [
         {
-          "public_id": "bookit/rooms/8_crn0xy",
-          "url": "https://res.cloudinary.com/bookit/image/upload/v1618590765/bookit/rooms/8_crn0xy.jpg"
+          "public_id": "/images-bucket/image/m4ugrpzwao5wyuiz04ab",
+          "url": "https://res.cloudinary.com/images-bucket/image/upload/v1634709284/e-booking/rooms/m4ugrpzwao5wyuiz04ab.jpg"
         }
       ],
       "category": "Twins"
@@ -141,8 +141,12 @@
       "roomCleaning": false,
       "images": [
         {
-          "public_id": "bookit/rooms/9_konrjf",
-          "url": "https://res.cloudinary.com/e-booking/image/upload/v1628501776/4stars_zmrlov.jpg"
+          "public_id": "/images-bucket/image/image2_mj21hk",
+          "url": "https://res.cloudinary.com/images-bucket/image/upload/v1635144589/e-booking/rooms/image2_mj21hk.jpg"
+        },
+        {
+          "public_id": "/images-bucket/image/image1_hmih11",
+          "url": "https://res.cloudinary.com/images-bucket/image/upload/v1635144589/e-booking/rooms/image1_hmih11.jpg"
         }
       ],
       "category": "Single"
@@ -161,8 +165,8 @@
       "roomCleaning": true,
       "images": [
         {
-          "public_id": "e-booking/image/upload/v1628503205",
-          "url": "https://res.cloudinary.com/e-booking/image/upload/v1628503205/e-booking/image_aaj9ij.jpg"
+          "public_id": "images-bucket/image/el89l6vcwbkxlkzh2m6",
+          "url": "https://res.cloudinary.com/images-bucket/image/upload/v1634709281/e-booking/rooms/hel89l6vcwbkxlkzh2m6.jpg"
         }
       ],
       "category": "Single"
