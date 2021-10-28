@@ -1,11 +1,20 @@
 html,
 body {
-  width: 100%;
-  height: 100%;
-  margin: 0px;
-  padding: 0px;
-  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 
 /* Scroll Bar */
 
@@ -45,7 +54,7 @@ body {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: #e61e4d;
+  background: rgb(9, 109, 57);
   animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 .lds-ellipsis div:nth-child(1) {
@@ -137,22 +146,22 @@ body {
 #forgot_password_button,
 #new_password_button,
 .search-form .btn {
-  background-color: #e61e4d;
-  border-color: #e61e4d;
+  background-color: rgb(9, 109, 57);
+  border-color: rgb(9, 109, 57);
   color: white;
   margin-top: 2.5rem;
   font-weight: bold;
 }
 
 .review-btn {
-  background-color: #e61e4d;
-  border-color: #e61e4d;
+  background-color: rgb(9, 109, 57);
+  border-color: rgb(9, 109, 57);
   margin-top: 2rem;
 }
 
 .new-room-btn {
-  background-color: #e61e4d;
-  border-color: #e61e4d;
+  background-color: rgb(9, 109, 57);
+  border-color: rgb(9, 109, 57);
 }
 
 .wrapper form a {
@@ -210,7 +219,7 @@ nav {
 
 
 .login-header-btn {
-  background-color: #e61e4d;
+  background-color: rgb(9, 109, 57);
 }
 
 .login-header-btn:hover {
@@ -229,14 +238,14 @@ nav {
 
 .back-to-search {
   font-size: 1.1rem;
-  color: #e61e4d;
+  color: rgb(9, 109, 57);
   font-weight: 600;
   margin-right: 2em;
 }
 
 .back-to-search:hover {
   text-decoration: none;
-  color: #e61e4d;
+  color: rgb(9, 109, 57);
 }
 
 .card {
@@ -250,7 +259,7 @@ nav {
 }
 
 .card-title a:hover {
-  color: #e61e4d;
+  color: rgb(9, 109, 57);
   text-decoration: none;
 }
 
@@ -265,7 +274,7 @@ nav {
 }
 
 .view-btn {
-  background-color: #e61e4d;
+  background-color: rgb(9, 109, 57);
 }
 
 
@@ -275,7 +284,7 @@ nav {
 
 .ratings {
   font-size: 1.2rem;
-  color: #e61e4d;
+  color: rgb(9, 109, 57);
 }
 
 #no_of_reviews {
@@ -290,7 +299,7 @@ nav {
   display: inline-block;
   position: relative;
   font-family: FontAwesome;
-  color: #e61e4d;
+  color: rgb(9, 109, 57);
 }
 
 .rating-outer::before {
@@ -308,7 +317,7 @@ nav {
 
 .rating-inner::before {
   content: '\f005 \f005 \f005 \f005 \f005';
-  color: #e61e4d;
+  color: rgb(9, 109, 57);
 }
 
 /* Room Details Page */
@@ -368,7 +377,7 @@ nav {
 }
 
 .red {
-  color: #e61e4d;
+  color: rgb(9, 109, 57);
 }
 
 .light-red {
@@ -453,16 +462,16 @@ input::placeholder {
 
 /* Pagination */
 .page-item.active .page-link {
-  background-color: #e61e4d;
-  border-color: #e61e4d;
+  background-color: rgb(9, 109, 57);
+  border-color: rgb(9, 109, 57);
 }
 
 .page-link {
-  color: #e61e4d;
+  color: rgb(9, 109, 57);
 }
 
 .page-link:hover {
-  color: #e61e4d;
+  color: rgb(9, 109, 57);
 }
 
 /* Booking Details */
@@ -490,7 +499,7 @@ input::placeholder {
 }
 
 #title_404 {
-  color: #e61e4d;
+  color: rgb(9, 109, 57);
   font-size: 7rem;
 }
 
@@ -500,7 +509,7 @@ input::placeholder {
 
 .notfound:hover {
   text-decoration: none;
-  color: #e61e4d;
+  color: rgb(9, 109, 57);
 }
 
  /* New Room */
@@ -510,12 +519,13 @@ input::placeholder {
 }
 
 .back_to_book {
-  color: #e61e4d;
+  color: rgb(9, 109, 57);
   margin-right: 12px;
   font-weight: bold;
 }
 
 .back_to_book:hover {
   text-decoration: none;
-  color: #e61e4d;
+  color: rgb(9, 109, 57);
 }
+
