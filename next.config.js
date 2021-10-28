@@ -10,7 +10,7 @@ module.exports = {
       "pk_test_51JLkf4F2Ig7LH22dOF8HQLaflUYgBvmYG4DgvdhsEMMhBwtBYfpFcvCr2XpzZNUCLZMlvc6IlTMgbgKUwO4xVXus00h6S1OVmJ",
     STRIPE_SECRET_KEY:
       "sk_test_51JLkf4F2Ig7LH22dBTiOg44ELu8CzwnFVt0Pv1kFtM8mEMt010Tyk7PxQNcorFfsgL9f1ZjPi6qjnKDBP1enLDmm00GuoGMxg7",
-    STRIPE_WEBHOOK_SECRET: "we_1JoNXoF2Ig7LH22d7Mvbfswj",
+    STRIPE_WEBHOOK_SECRET: "we_1JpdmIF2Ig7LH22dULmkUPnV",
     // STRIPE_WEBHOOK_SECRET: "whsec_2aaBJAEvjbkAJJCcTfO4FRKQpVkSMeoy",
 
     CLOUDINARY_CLOUD_NAME: "images-bucket",
