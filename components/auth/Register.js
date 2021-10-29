@@ -102,11 +102,20 @@ const Register = () => {
                             {loading ? <ButtonLoader /> : "REGISTER"}
 
                         </button>
-                        <Link href="/login">
-                            <a href="#" className="float-left my-2">
-                                Login
-                            </a>
-                        </Link>
+                        <p
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              Already have an account ?
+              <Link href="/login">
+                <a href="#" className="float-left my-2">
+                  Login
+                </a>
+              </Link>
+            </p>
                     </form>
                 </div>
             </div>
