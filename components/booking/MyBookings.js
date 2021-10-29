@@ -91,7 +91,7 @@ const MyBookings = () => {
       marginRight: 25,
       marginLeft: 25,
       marginBottom: 25,
-      logo: "https://res.cloudinary.com/e-booking/image/upload/v1628400008/e-booking_logo_vwwioa.png",
+      logo: "https://res.cloudinary.com/images-bucket/image/upload/v1628400008/e-booking_logo_vwwioa.png",
       background:
         "https://public.easyinvoice.cloud/img/watermark-draft.jpg",
       sender: {
@@ -133,21 +133,20 @@ const MyBookings = () => {
   return (
     <div className="container container-fluid">
 
-        {myBookings && myBookings.length === 0 ? 
-          <div className="alert alert-danger mt-5">No Bookings.</div>  
-          : <h1 className="my-5">
-          {`${myBookings && myBookings.length} Booking${
-            myBookings.length === 1 ? "" : "s"}`}
+      {myBookings && myBookings.length === 0 ?
+        <div className="alert alert-danger mt-5">No Bookings.</div>
+        : <h1 className="my-5">
+          {`${myBookings && myBookings.length} Booking${myBookings.length === 1 ? "" : "s"}`}
         </h1>
-        }
-      {myBookings.length === 0 && 
-          <div className="">
-            <p><Link href='/'><a className="back_to_book">Go back</a></Link> to book one.</p>
-          </div>
+      }
+      {myBookings.length === 0 &&
+        <div className="">
+          <p><Link href='/'><a className="back_to_book">Go back</a></Link> to book one.</p>
+        </div>
       }
 
-      {myBookings && myBookings.length> 0 && 
-          <MDBDataTable
+      {myBookings && myBookings.length > 0 &&
+        <MDBDataTable
           data={setBookings()}
           className="px-2"
           bordered

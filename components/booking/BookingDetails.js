@@ -26,7 +26,7 @@ const BookingDetails = () => {
 
   return (
     <div className="container container-fluid">
-      <div classNameN="row d-flex justify-content-between">
+      <div className="row d-flex justify-content-between">
         <div className="col-12 col-lg-8 mt-5 booking-details">
           {booking && booking.room && booking.user && (
             <>
