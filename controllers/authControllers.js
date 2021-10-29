@@ -17,12 +17,6 @@ cloudinary.config({
 
 //User register => /api/auth/register
 const userRegister = catchAsyncErrors(async (req, res) => {
-  const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
-    folder: "e-booking/avatars",
-    width: "150",
-    crop: "scale",
-  });
-
   const { name, email, password } = req.body;
 
   const user = await User.create({
@@ -30,8 +24,8 @@ const userRegister = catchAsyncErrors(async (req, res) => {
     email,
     password,
     avatar: {
-      public_id: result.public_id,
-      url: result.secure_url,
+      public_id: 'images-bucket/image/upload/v1628864236/e-booking/avatars/x968sipxcaknthpnr9c8',
+      url: 'https://res.cloudinary.com/images-bucket/image/upload/v1628864236/e-booking/avatars/x968sipxcaknthpnr9c8.png',
     },
   });
 
