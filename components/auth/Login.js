@@ -71,12 +71,21 @@ const Login = () => {
               {loading ? <ButtonLoader /> : "LOGIN"}
             </button>
 
-            
-            <Link href="/register">
-              <a href="#" className="float-left my-2">
-                New Account?
-              </a>
-            </Link>
+             <p
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              {" "}
+             have no account ?
+              <Link href="/register">
+                <a href="#" className="float-left my-2">
+                  Register
+                </a>
+              </Link>
+            </p>
           </form>
         </div>
       </div>
