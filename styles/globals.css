@@ -211,9 +211,10 @@ a {
 nav {
   background-color: white;
   padding: 1rem 1rem;
-  -webkit-box-shadow: 0 4px 6px -6px #ccc;
+/*   -webkit-box-shadow: 0 4px 6px -6px #ccc;
   -moz-box-shadow: 0 4px 6px -6px #ccc;
-  box-shadow: 0 4px 6px -6px #ccc;
+  box-shadow: 0 4px 6px -6px #ccc; */
+  border-bottom : 1px solid #ccc;
 }
 
 
