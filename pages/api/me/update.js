@@ -10,6 +10,14 @@ const handler = nc({ onError });
 
 dbConnect();
 
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '10mb'
+        }
+    }
+}
+
 handler.use(isAuthenticatedUser).put(updateProfile);
 
 export default handler;

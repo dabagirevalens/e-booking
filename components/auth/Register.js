@@ -97,25 +97,25 @@ const Register = () => {
                             id="login_button"
                             type="submit"
                             className="btn btn-block py-3"
-                            disabled={loading ? true : false}
+                            disabled={loading ? true : false || !name || !email || !password}
                         >
                             {loading ? <ButtonLoader /> : "REGISTER"}
 
                         </button>
                         <p
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              Already have an account ?
-              <Link href="/login">
-                <a href="#" className="float-left my-2">
-                  Login
-                </a>
-              </Link>
-            </p>
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                            }}
+                        >
+                            Already have an account ?
+                            <Link href="/login">
+                                <a href="#" className="float-left my-2">
+                                    Login
+                                </a>
+                            </Link>
+                        </p>
                     </form>
                 </div>
             </div>

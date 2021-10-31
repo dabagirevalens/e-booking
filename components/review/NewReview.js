@@ -161,6 +161,7 @@ const NewReview = () => {
                 data-dismiss="modal"
                 aria-label="Close"
                 onClick={submitHandler}
+                disabled={!comment}
               >
                 Submit
               </button>
