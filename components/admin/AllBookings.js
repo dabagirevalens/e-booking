@@ -127,7 +127,7 @@ const AllBookings = () => {
       marginRight: 25,
       marginLeft: 25,
       marginBottom: 25,
-      logo: "https://res.cloudinary.com/e-booking/image/upload/v1628400008/e-booking_logo_vwwioa.png",
+      logo: "https://res.cloudinary.com/images-bucket/image/upload/v1628400008/e-booking_logo_vwwioa.png",
       background:
         "https://public.easyinvoice.cloud/img/watermark-draft.jpg",
       sender: {
