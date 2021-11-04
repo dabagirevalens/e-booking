@@ -31,7 +31,7 @@ const RoomItem = ({ room }) => {
                 style={{ width: `${(room.ratings / 5) * 100}%` }}
               ></div>
             </div>
-            <span id="no_of_reviews">({room.numOfReviews} Reviews)</span>
+            <span id="no_of_reviews">({room.numOfReviews} Review{room.numOfReviews == 1? "" : "s"})</span>
           </div>
 
             <Link href={`/room/${room._id}`}>
