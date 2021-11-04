@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
+
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import  Image  from "next/image";
+// import  Image  from "next/image";
 import { toast } from "react-toastify";
 
 import ButtonLoader from "../layout/ButtonLoader";
@@ -139,7 +141,7 @@ const Profile = () => {
                     <div>
                       <figure className="avatar mr-3 item-rtl">
                         
-                        <Image
+                        <img
                           src={avatarPreview}
                           className="rounded-circle"
                           alt="image"
