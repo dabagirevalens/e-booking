@@ -12,7 +12,7 @@ const Header = () => {
 
   const { user, loading } = useSelector((state) => state.loadedUser);
 
-  
+
   useEffect(() => {
     dispatch(loadUser());
   }, [dispatch]);
@@ -62,21 +62,21 @@ const Header = () => {
                 aria-labelledby="dropDownMenuButton"
               >
 
-                {user.role === 'admin' && 
-                 <>
-                  <Link href="/admin/rooms">
+                {user.role === 'admin' &&
+                  <>
+                    <Link href="/admin/rooms">
                       <a className="dropdown-item">Rooms</a>
-                   </Link>
+                    </Link>
 
-                   <Link href="/admin/bookings">
+                    <Link href="/admin/bookings">
                       <a className="dropdown-item">Bookings</a>
-                   </Link>
+                    </Link>
 
-                   <Link href="/admin/users">
+                    <Link href="/admin/users">
                       <a className="dropdown-item">Users</a>
-                   </Link>
-                   <hr />
-                 </>
+                    </Link>
+                    <hr />
+                  </>
                 }
 
                 <Link href="/bookings/me">
@@ -86,20 +86,20 @@ const Header = () => {
                   <a className="dropdown-item">Profile</a>
                 </Link>
                 <Link href="/">
-                  <a 
-                  className="dropdown-item text-danger" 
-                  onClick={logoutHandler}>
+                  <a
+                    className="dropdown-item text-danger"
+                    onClick={logoutHandler}>
                     Logout
                   </a>
                 </Link>
               </div>
             </div>
           ) : (
-              <Link href="/login">
-                <a className="btn px-4 text-white login-header-btn float-right">
-                  Login
-                </a>
-              </Link>
+            (!loading && <Link href="/login">
+              <a className="btn px-4 text-white login-header-btn float-right">
+                Login
+              </a>
+            </Link>)
           )}
         </div>
       </div>
