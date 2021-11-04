@@ -25,7 +25,7 @@ const stripeCheckoutSession = catchAsyncErrors(async (req, res) => {
     const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         success_url: `${origin}/bookings/me`,
-        cancel_url: `${origin}/room/${room.id}`,
+        cancel_url: `${origin}/room/${room._id}`,
         customer_email: req.user.email,
         client_reference_id: req.query.roomId,
         metadata: { checkInDate, checkOutDate, daysOfStay },
@@ -64,7 +64,7 @@ const webhookCheckout = catchAsyncErrors(async (req, res) => {
             const session = event.data.object;
 
             const room = session.client_reference_id;
-            const user = (await User.findOne({ email: session.customer_email })).id;
+            const user = (await User.findOne({ email: session.customer_email }))._id;
 
             const amountPaid = session.amount_total;
 
