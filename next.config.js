@@ -6,9 +6,9 @@ module.exports = {
 
     DB_URI: 'mongodb+srv://dabagire:2ussy9luzZy9Jq31@e-booking.uk9ed.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
 
-    STRIPE_API_KEY: 'pk_test_51JsP0GFceaz50RLnZcqDvTMLZ0DJBI2qEz6EItRzcUI2C5r5zlGDM11j49ctH5XYbAkwo8sGf9H4tFmbkThXGKcH002kV2a2BS',
-    STRIPE_SECRET_KEY: 'sk_test_51JsP0GFceaz50RLnYYwqwqAchGktK4tQAS59wy67wVTC1mfRdYuv3GwiZXEGNAOLqDKqndsWqa6TrR25nDrv1TuD007vsQjBt7',
-    STRIPE_WEBHOOK_SECRET: 'whsec_vzqBx9v1M6urhopuber5emeafEELfjVr',
+    STRIPE_API_KEY: 'pk_test_51JFOUzJt8PjGxb7vBnax4XXGVaMf9G78be5UMwj6EotdLe6mOOI6931bptYCxh0hh8ui6fsRHEXHU9u2nMNRiWEQ00GNPHuJFn',
+    STRIPE_SECRET_KEY: 'sk_test_51JFOUzJt8PjGxb7vpU8kzIV8ayFecSJ2JmnIyMAQLknFAAVOe3V4SRHOoQIUimpdhTb7q31B5i5jkeIj8FXvPHlC00mpH0aw9E',
+    STRIPE_WEBHOOK_SECRET: 'whsec_S2T6pE4bJMP62Ih6NKnDRRokCpaI5YrC',
     
 
     CLOUDINARY_CLOUD_NAME: "images-bucket",
