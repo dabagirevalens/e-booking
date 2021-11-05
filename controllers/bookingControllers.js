@@ -144,7 +144,7 @@ const allAdminBookings = catchAsyncErrors(async (req, res) => {
 
 // Get all bookings - ADMIN => /api/admin/bookings
 
-const deleteBooking = catchAsyncErrors(async (req, res) => {
+const deleteBooking = catchAsyncErrors(async (req, res, next) => {
 
   const booking = await Booking.findById(req.query.id);
 
