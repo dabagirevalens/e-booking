@@ -4,6 +4,8 @@ import catchAsyncErrors from "../middlewares/catchAsyncErrors";
 import Moment from "moment";
 import { extendMoment } from "moment-range";
 
+import ErrorHandler from '../utils/errorHandler';
+
 const moment = extendMoment(Moment);
 
 // Create new booking
