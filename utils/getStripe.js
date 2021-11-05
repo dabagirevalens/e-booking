@@ -4,7 +4,7 @@ let stripePromise;
 
 const getStripe = () => {
     if(!stripePromise) {
-        stripePromise = loadStripe('pk_test_51JFOUzJt8PjGxb7vBnax4XXGVaMf9G78be5UMwj6EotdLe6mOOI6931bptYCxh0hh8ui6fsRHEXHU9u2nMNRiWEQ00GNPHuJFn');
+        stripePromise = loadStripe(process.env.STRIPE_API_KEY);
     }
 
     return stripePromise;

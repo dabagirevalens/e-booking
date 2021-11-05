@@ -8,7 +8,7 @@ import getRawBody from 'raw-body'
 import catchAsyncErrors from '../middlewares/catchAsyncErrors';
 import absoluteUrl from 'next-absolute-url'
 
-const stripe = require('stripe')('sk_test_51JFOUzJt8PjGxb7vpU8kzIV8ayFecSJ2JmnIyMAQLknFAAVOe3V4SRHOoQIUimpdhTb7q31B5i5jkeIj8FXvPHlC00mpH0aw9E');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 //Generate stripe checkout session => /api/checkout_session/:roomId
 const stripeCheckoutSession = catchAsyncErrors(async (req, res) => {
