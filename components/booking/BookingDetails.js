@@ -40,7 +40,7 @@ const BookingDetails = () => {
                 <b>Email:</b> {booking.user && booking.user.email}
               </p>
               <p>
-                <b>Amount:</b> ${booking.amountPaid}
+                <b>Amount:</b> ${booking.amountPaid/100}
               </p>
 
               <hr />
