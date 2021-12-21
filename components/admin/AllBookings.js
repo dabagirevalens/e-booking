@@ -54,8 +54,8 @@ const AllBookings = () => {
     const data = {
       columns: [
         {
-          label: "Booking Id",
-          field: "id",
+          label: "Room",
+          field: "room",
           sort: "asc",
         },
         {
@@ -85,7 +85,7 @@ const AllBookings = () => {
     myBookings &&
       myBookings.forEach((booking) => {
         data.rows.push({
-          id: booking._id,
+          room: booking.room.name,
           checkIn: new Date(booking.checkInDate).toLocaleString("en-US"),
           checkOut: new Date(booking.checkOutDate).toLocaleString("en-US"),
           amount: `$${booking.amountPaid}`,
