@@ -5,7 +5,7 @@ import { getSession } from 'next-auth/client'
 
 export default function UpdateUserProfilePage() {
   return (
-    <Layout title="E-booking | Profile">
+    <Layout title="Umwezi | Profile">
       <Profile />
     </Layout>
   );

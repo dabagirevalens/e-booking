@@ -8,7 +8,7 @@ import { getSession }from 'next-auth/client'
 
 const MyBookingsPage = ()  =>{
   return (
-    <Layout title="E-booking | My Bookings">
+    <Layout title="Umwezi | My Bookings">
       <MyBookings />
     </Layout>
   );

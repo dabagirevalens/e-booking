@@ -6,7 +6,7 @@ import { getSession } from 'next-auth/client'
 
 export default function RegisterPage() {
   return (
-    <Layout title='E-booking | Register'>
+    <Layout title='Umwezi | Register'>
       <Register />
     </Layout>
   );
