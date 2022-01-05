@@ -8,7 +8,7 @@ import Layout from "../../../components/layout/Layout";
 
 export default function UpdateRoomPage() {
   return (
-    <Layout title="E-booking | Update Room">
+    <Layout title="Umwezi | Update Room">
       <UpdateRoom />
     </Layout>
   );

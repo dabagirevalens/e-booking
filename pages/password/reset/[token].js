@@ -6,7 +6,7 @@ import Layout from "../../../components/layout/Layout";
 
 export default function NewPasswordPage() {
   return (
-    <Layout title='E-booking | Reset Password'>
+    <Layout title='Umwezi | Reset Password'>
       <NewPassword />
     </Layout>
   );

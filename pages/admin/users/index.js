@@ -8,7 +8,7 @@ import Layout from "../../../components/layout/Layout";
 
 export default function AllUsersPage() {
   return (
-    <Layout title="E-booking | All Users">
+    <Layout title="Umwezi | All Users">
       <AllUsers />
     </Layout>
   );

@@ -5,7 +5,7 @@ import { getSession } from 'next-auth/client'
 
 export default function LoginPage() {
   return (
-    <Layout title="E-booking | Login">
+    <Layout title="Umwezi | Login">
       <Login />
     </Layout>
   );

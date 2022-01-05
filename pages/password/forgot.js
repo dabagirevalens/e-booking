@@ -5,7 +5,7 @@ import Layout from "../../components/layout/Layout";
 
 const ForgotPasswordPage = () => {
   return (
-    <Layout title="E-booking | Forgot Password">
+    <Layout title="Umwezi | Forgot Password">
       <ForgotPassword />
     </Layout>
   );

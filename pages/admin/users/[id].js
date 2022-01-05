@@ -8,7 +8,7 @@ import Layout from "../../../components/layout/Layout";
 
 export default function UpdateUserPage() {
   return (
-    <Layout title="E-booking | Update User">
+    <Layout title="Umwezi | Update User">
       <UpdateUser />
     </Layout>
   );
