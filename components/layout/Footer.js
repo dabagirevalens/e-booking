@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="py-1">
       <p className="text-center mt-1">
-        &copy;2021e-booking || All Rights Reserved.
+        &copy;Copyright 2021 Umwezi || All Rights Reserved.
       </p>
     </footer>
   );
