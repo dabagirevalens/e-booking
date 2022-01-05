@@ -28,11 +28,14 @@ const Header = () => {
           <div className='navbar-brand"'>
             {/* eslint-disable-next-line @next/next/link-passhref */}
             <Link href="/">
-              <img
+              {/* <img
                 style={{ cursor: "pointer" }}
                 src="/images/e-booking_logo.png"
                 alt="e-booking"
-              />
+              /> */}
+              <h1 style={{ color: "green" }}>
+                Umwezi Hotel.
+              </h1>
             </Link>
           </div>
         </div>
