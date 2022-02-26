@@ -33,8 +33,8 @@ const Header = () => {
                 src="/images/e-booking_logo.png"
                 alt="e-booking"
               /> */}
-              <h1 style={{ color: "green" }}>
-                Umwezi Hotel.
+              <h1 style={{ color: "rgb(9, 109, 57);" }}>
+                E-booking
               </h1>
             </Link>
           </div>
